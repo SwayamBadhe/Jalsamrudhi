@@ -21,12 +21,12 @@ const Navbar = () => (
       <StyledTitle variant="h6">
         Navbar
       </StyledTitle>
-      <Button color="inherit" style={{background:'#FFBF34', marginRight:'2px'}}>About</Button>
-      <Button color="inherit"style={{background:'#FFBF34',marginRight:'2px'}}>What we do</Button>
-      <Button color="inherit"style={{background:'#FFBF34',marginRight:'2px'}}>What we are</Button>
-      <Button color="inherit"style={{background:'#FFBF34',marginRight:'2px'}}>JSN</Button>
-      <Button color="inherit"style={{background:'#FFBF34',marginRight:'2px'}}>Social Wall</Button>
-      <Button color="inherit"style={{background:'#FFBF34',marginRight:'2px'}}>Donate</Button>
+      <Button color="inherit" style={{background:'#FFBF34', marginRight:'5px'}}>About</Button>
+      <Button color="inherit"style={{background:'#FFBF34',marginRight:'5px'}}>What we do</Button>
+      <Button color="inherit"style={{background:'#FFBF34',marginRight:'5px'}}>What we are</Button>
+      <Button color="inherit"style={{background:'#FFBF34',marginRight:'5px'}}>JSN</Button>
+      <Button color="inherit"style={{background:'#FFBF34',marginRight:'5px'}}>Social Wall</Button>
+      <Button color="inherit"style={{background:'#FFBF34',marginRight:'5px'}}>Donate</Button>
     </Toolbar>
   </StyledAppBar>
 );
