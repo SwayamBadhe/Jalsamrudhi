@@ -10,6 +10,7 @@ const getAllMedia = async (req, res) => {
   const media_card = media.map((item) => ({
     id: item.id,
     alt: item.alt,
+    description: item.description,
     filename: item.filename,
     createdAt: item.createdAt,
     updatedAt: item.updatedAt,
@@ -32,8 +33,8 @@ const getMediaById = async (req, res) => {
       return res.status(404).json({ error: 'Media not found' });
     }
 
-    const { id, alt, filename, createdAt, updatedAt } = media;
-    const media_card = { id, alt, filename, createdAt, updatedAt };
+    const { id, alt, description, filename, createdAt, updatedAt } = media;
+    const media_card = { id, alt, description, filename, createdAt, updatedAt };
 
     res.json(media_card);
   } catch (error) {
