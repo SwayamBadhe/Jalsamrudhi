@@ -7,20 +7,27 @@ const AboutUs = () => {
         </div>
         <div className="grid grid-cols-2 gap-16">
           <div className="text-lg mt-5">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea dolor
-            accusamus iste voluptate sed quisquam placeat. Sed recusandae quidem
-            praesentium perferendis voluptas unde id officia? Quisquam fugiat
-            numquam, explicabo eius vitae labore repellendus consequuntur cumque
-            adipisci qui non magnam neque culpa illo, perferendis laudantium
-            praesentium dolore doloremque ea, molestiae repudiandae!
+            In an earnest endeavor to combat the looming threat of water
+            scarcity, the Jalsamruddha Nashik Abhiyaan has emerged as a beacon
+            of hope, rallying widespread support across diverse sectors. Led by
+            the dynamic leadership of District Collector Jalaj Sharma, this
+            initiative commenced on April 15 with the noble objective of
+            ensuring water prosperity for Nashik. At the inaugural ceremony held
+            amidst the tranquil surroundings of Gangapur Dam's Gangavarhe
+            village, Collector Jalaj Sharma underscored the indispensable role
+            of each Nashik resident in shaping the success of this ambitious
+            campaign.
           </div>
           <div className="text-lg mt-5">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi unde
-            ab voluptate repellendus eligendi, delectus ut. Et illo totam
-            aspernatur praesentium quas, reiciendis atque itaque voluptate illum
-            odio magni officiis voluptas eos mollitia odit eligendi neque?
-            Explicabo magni, neque consequatur laudantium dignissimos numquam
-            quam quos minus quidem id quaerat voluptatum!{' '}
+            The launch of the 'Jal Samruddha Nashik' campaign marks a
+            significant stride towards water conservation and augmentation
+            efforts in the region. Organized by voluntary organizations in
+            collaboration with the district administration, the campaign
+            commenced at Gangapur Dam in Gangavarhe on Tuesday, April 16, under
+            the leadership of District Magistrate Jalaj Sharma. he campaign aims
+            to bolster water conservation efforts by increasing the capacity of
+            reservoirs through the implementation of the 'Gaal-Mukta Dharan,
+            Gaal-Yukt Shivar' scheme initiated by the state government.
           </div>
         </div>
       </div>
