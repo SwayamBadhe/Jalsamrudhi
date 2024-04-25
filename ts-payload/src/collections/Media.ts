@@ -33,5 +33,9 @@ export const Media: CollectionConfig = {
       name: 'alt',
       type: 'text',
     },
+    {
+      name: 'description',
+      type: 'text',
+    },
   ],
 };
