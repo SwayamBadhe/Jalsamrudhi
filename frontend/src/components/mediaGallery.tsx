@@ -32,15 +32,11 @@ const MediaGallery = () => {
   };
 
   return (
-    <div className="container py-6 ml-6">
+    <div className="py-6 ml-6">
       <div className="grid grid-cols-3 gap-6">
         {media.map((item) => (
           <div key={item.id} className="relative">
-            <img
-              src={getImageUrl(item.thumbnailUrl)}
-              alt={item.alt}
-              className="absolute"
-            />
+            <img src={getImageUrl(item.thumbnailUrl)} alt={item.alt} />
           </div>
         ))}
       </div>
