@@ -1,34 +1,23 @@
+import cors from 'cors';
+import dotenv from 'dotenv';
 import express from 'express';
 import payload from 'payload';
 
-const cors = require('cors');
-const axios = require('axios');
-require('dotenv').config();
+const mediaRouter = require('./routes/media');
+
+dotenv.config();
+
 const app = express();
+
+// Middleware
 app.use(cors());
+
+// Routes
+app.use('/fetch-media', mediaRouter);
 
 // Redirect root to Admin panel
 app.get('/', (_, res) => {
   res.redirect('/admin');
-});
-
-app.get('/fetch-media', async (req, res) => {
-  const result = await payload.find({
-    collection: 'media',
-  });
-
-  const media = await result.docs;
-
-  const media_card = media.map((item) => ({
-    id: item.id,
-    alt: item.alt,
-    filename: item.filename,
-    cardImageUrl: item.sizes.card.url, // URL of the card-sized image
-    createdAt: item.createdAt,
-    updatedAt: item.updatedAt,
-  }));
-
-  res.json(media_card);
 });
 
 const start = async () => {
