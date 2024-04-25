@@ -13,6 +13,8 @@ const getAllMedia = async (req, res) => {
     filename: item.filename,
     createdAt: item.createdAt,
     updatedAt: item.updatedAt,
+    thumbnailUrl: item.sizes.thumbnail.url,
+    tabletUrl: item.sizes.tablet.url,
   }));
 
   res.json(media_card);
@@ -30,7 +32,10 @@ const getMediaById = async (req, res) => {
       return res.status(404).json({ error: 'Media not found' });
     }
 
-    res.json(media);
+    const { id, alt, filename, createdAt, updatedAt } = media;
+    const media_card = { id, alt, filename, createdAt, updatedAt };
+
+    res.json(media_card);
   } catch (error) {
     console.error('Error fetching media by ID:', error.message);
     res.status(500).json({ error: 'Internal server error' });
