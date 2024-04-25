@@ -1,75 +1,65 @@
-// import React, { useState, useEffect } from 'react';
-// import { Box, Typography } from '@mui/material';
-// import deviceimg1 from './images/deviceimg1.jpg';
-// import deviceimg2 from './images/deviceimg2.jpg';
-// import deviceimg3 from './images/deviceimg3.jpg';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
+import ImageBox from './ImageBox';
 
-// const HeroSection = () => {
-//   const slides = [
-//     {
-//       id: 1,
-//       title: 'Slide 1',
-//       description: 'This is the first slide description.',
-//       image: deviceimg1,
-//     },
-//     {
-//       id: 2,
-//       title: 'Slide 2',
-//       description: 'This is the second slide description.',
-//       image: deviceimg2,
-//     },
-//     {
-//       id: 3,
-//       title: 'Slide 3',
-//       description: 'This is the third slide description.',
-//       image: deviceimg3,
-//     },
-//   ];
+interface MediaItem {
+  id: string;
+  alt: string;
+  description: string;
+  filename: string;
+  createdAt: string;
+  thumbnailUrl: string;
+}
 
-//   const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
+const HeroSection = () => {
+  const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
+  const [slides, setSlides] = useState<MediaItem[]>([]);
 
-//   // Rotate slides every 5 seconds (5000 milliseconds)
-//   useEffect(() => {
-//     const interval = setInterval(() => {
-//       setCurrentSlideIndex((prevIndex) => (prevIndex + 1) % slides.length);
-//     }, 5000);
+  // Rotate slides every 5 seconds (5000 milliseconds)
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentSlideIndex((prevIndex) => (prevIndex + 1) % slides.length);
+    }, 5000);
 
-//     // Clean up interval on component unmount
-//     return () => clearInterval(interval);
-//   }, [slides.length]);
+    // Clean up interval on component unmount
+    return () => clearInterval(interval);
+  }, [slides.length]);
 
-//   // Get the current slide
-//   const currentSlide = slides[currentSlideIndex];
+  useEffect(() => {
+    const fetchMedia = async () => {
+      try {
+        const response = await axios.get('http://localhost:5500/fetch-media');
+        setSlides(response.data);
+      } catch (error) {
+        if (axios.isAxiosError(error)) {
+          console.error('Axios error:', error.message);
+        }
+      }
+    };
 
-//   return (
-//     <Box
-//       sx={{
-//         height: '400px',
-//         width: '100%',
-//         backgroundImage: `url(${currentSlide.image})`,
-//         backgroundSize: 'cover',
-//         backgroundPosition: 'center',
-//         display: 'flex',
-//         flexDirection: 'column',
-//         justifyContent: 'center',
-//         alignItems: 'center',
-//         // color: 'white',
-//         textAlign: 'center',
-//       }}
-//     >
-//       <Typography variant="h3" sx={{ mb: 2 }}>
-//         {currentSlide.title}
-//       </Typography>
-//       <Typography variant="h6">
-//         {currentSlide.description}
-//       </Typography>
-//     </Box>
-//   );
-// };
+    fetchMedia();
+  }, []);
 
-// export default HeroSection;
+  const getImageUrl = (thumbnailUrl: string) => {
+    return `http://localhost:5500${thumbnailUrl}`;
+  };
 
-const herosection = () => {
-  return <div>herosection</div>;
+  // Get the current slide
+  const currentSlide = slides[currentSlideIndex];
+
+  return (
+    <>
+      {slides.length > 0 && currentSlide ? (
+        <ImageBox
+          imageUrl={getImageUrl(currentSlide.thumbnailUrl)}
+          alt={currentSlide.alt}
+          description={currentSlide.description}
+        />
+      ) : (
+        <div>Loading...</div>
+      )}
+    </>
+  );
 };
-export default herosection;
+
+export default HeroSection;
