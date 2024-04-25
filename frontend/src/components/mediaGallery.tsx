@@ -6,6 +6,7 @@ interface MediaItem {
   alt: string;
   filename: string;
   createdAt: string;
+  thumbnailUrl: string;
 }
 
 const MediaGallery = () => {
@@ -26,16 +27,20 @@ const MediaGallery = () => {
     fetchMedia();
   }, []);
 
-  const getImageUrl = (filename: string) => {
-    return `http://localhost:5500/media/${filename}`;
+  const getImageUrl = (thumbnailUrl: string) => {
+    return `http://localhost:5500${thumbnailUrl}`;
   };
 
   return (
-    <div className="container">
-      <div className="grid grid-cols-1 gap-6">
+    <div className="container py-6 ml-6">
+      <div className="grid grid-cols-3 gap-6">
         {media.map((item) => (
-          <div key={item.id} className="">
-            <img src={getImageUrl(item.filename)} alt={item.alt} />
+          <div key={item.id} className="relative">
+            <img
+              src={getImageUrl(item.thumbnailUrl)}
+              alt={item.alt}
+              className="absolute"
+            />
           </div>
         ))}
       </div>
