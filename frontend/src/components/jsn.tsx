@@ -1,75 +1,76 @@
 import { Typography } from '@mui/material';
-import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
 
-// Define the Jsn component
+interface articleItem {
+  id: string;
+  text: string;
+}
+
 const Jsn = () => {
-    // Define state variables for articles, loading, and error
-    const [articles, setArticles] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
+  const [articles, setArticles] = useState<articleItem[]>([]);
+  const [loading, setLoading] = useState(true);
 
-    // Function to fetch articles from the backend
+  useEffect(() => {
     const fetchArticles = async () => {
-        try {
-            // Fetch articles from your backend API endpoint
-            const response = await fetch('YOUR_BACKEND_API_URL/articles');
-            if (!response.ok) {
-                throw new Error('Failed to fetch articles');
-            }
-            const data = await response.json();
-            setArticles(data);
-        } catch (error) {
-            // Handle error
-            setError(error);
-        } finally {
-            // Set loading to false once fetching is complete
-            setLoading(false);
+      try {
+        const response = await axios.get('http://localhost:5500/fetch-article');
+        setArticles(response.data);
+      } catch (error) {
+        if (axios.isAxiosError(error)) {
+          console.error('Axios error:', error.message);
         }
+      } finally {
+        setLoading(false);
+      }
     };
 
-    // Use the useEffect hook to fetch articles when the component mounts
-    useEffect(() => {
-        fetchArticles();
-    }, []);
+    fetchArticles();
+    return () => {};
+  }, []);
 
-    // Render the Jsn component
-    return (
-        <div>
-            <Typography variant="h4" sx={{
-                display: 'flex',
-                width: '743px',
-                height: '208px',
-                flexDirection: 'column',
-                justifyContent: 'center',
-                flexShrink: 0,
-                color: '#000',
-                fontFamily: '"DM Serif Display"',
-                fontSize: '96px',
-                fontStyle: 'normal',
-                fontWeight: '400',
-                lineHeight: '125%', /* 120px */
-                letterSpacing: '13.44px',
-                marginLeft: '25%',}}>JSN Articles</Typography>
+  // Render the Jsn component
+  return (
+    <div className="mb-4 h-screen w-screen">
+      <Typography
+        variant="h4"
+        sx={{
+          display: 'flex',
+          width: '743px',
+          height: '208px',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          flexShrink: 0,
+          color: '#000',
+          fontFamily: '"DM Serif Display"',
+          fontSize: '96px',
+          fontStyle: 'normal',
+          fontWeight: '400',
+          lineHeight: '125%' /* 120px */,
+          letterSpacing: '13.44px',
+          marginLeft: '25%',
+        }}
+      >
+        JSN Articles
+      </Typography>
 
-            {/* Show a loading message if the data is still being fetched */}
-            {loading && <p>Loading articles...</p>}
-
-            {/* Show an error message if there was an error fetching data */}
-            {error && <p>Error: {error.message}</p>}
-
-            {/* Render articles if data is loaded successfully */}
-            {!loading && !error && (
-                <ul>
-                    {articles.map((article) => (
-                        <li key={article.id}>
-                            <h2>{article.title}</h2>
-                            <p>{article.content}</p>
-                        </li>
-                    ))}
-                </ul>
-            )}
-        </div>
-    );
+      {/* Show a loading message if the data is still being fetched */}
+      {loading && <p>Loading articles...</p>}
+      <div className="bg-slate-50 rounded-2xl mr-5">
+        {/* Render articles if data is loaded successfully */}
+        {!loading && (
+          <ul className="">
+            {articles.map((article) => (
+              <li key={article.id} className="mb-5 p-5">
+                {/* <h2>some title</h2> */}
+                <p>{article.text}</p>
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+    </div>
+  );
 };
 
 export default Jsn;
