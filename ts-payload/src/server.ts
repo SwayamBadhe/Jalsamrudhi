@@ -5,18 +5,20 @@ import payload from 'payload';
 import bodyParser from 'body-parser';
 
 const mediaRouter = require('./routes/media');
-// const donateRouter = require('./routes/payment');
+const donateRouter = require('./routes/payment');
 
 dotenv.config();
 
 const app = express();
 
 // Middleware
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 app.use(cors());
 
 // Routes
 app.use('/fetch-media', mediaRouter);
-// app.use('/donate', donateRouter);
+app.use('/order', donateRouter);
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
