@@ -10,6 +10,7 @@ import Users from './collections/Users';
 import { Media } from './collections/Media';
 import { Media_Gallery } from './collections/MediaPhotoGallery';
 import { AboutUs } from './collections/About_us';
+import { JSN } from './collections/JSN';
 
 export default buildConfig({
   admin: {
@@ -17,7 +18,7 @@ export default buildConfig({
     bundler: webpackBundler(),
   },
   editor: slateEditor({}),
-  collections: [Users, Media, Media_Gallery, AboutUs],
+  collections: [Users, Media, Media_Gallery, AboutUs, JSN],
   typescript: {
     outputFile: path.resolve(__dirname, 'payload-types.ts'),
   },
