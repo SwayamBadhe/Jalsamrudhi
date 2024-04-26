@@ -21,7 +21,7 @@ function App() {
         <AppRoutes />
         {/* Rest of your app components */}
         <MediaGallery />
-        <SocialWall />
+        {/* <SocialWall /> */}
         <AboutUs />
         <Payment />
         <Footer />
