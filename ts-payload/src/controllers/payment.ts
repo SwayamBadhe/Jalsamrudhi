@@ -71,4 +71,13 @@ const postOrderInfo = async (req, res) => {
   }
 };
 
-export { order, validateOrder, postOrderInfo };
+const getOrder = async (req, res) => {
+  try {
+    const order = await Order.find();
+    res.json(order);
+  } catch (error) {
+    res.status(500).json({ error: 'Internal server error' });
+  }
+};
+
+export { order, getOrder, validateOrder, postOrderInfo };
