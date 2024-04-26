@@ -9,32 +9,32 @@ import AppRoutes from './routes/routes';
 import SocialWall from './components/social_wall';
 import Dashboard from './components/dashboard';
 
-
 function App() {
   const location = useLocation();
 
   const showHeroSection = location.pathname !== '/about';
   const showSocialWall = location.pathname !== '/social_wall';
   return (
-    <Grid sx={{
-      marginLeft:"10px",
-      marginRight:"10px",
-      
-    }}>
-      <div>
+    <Grid
+      sx={{
+        marginLeft: '10px',
+        marginRight: '10px',
+      }}
+    >
+      <div className="max-w-screen-2xl mr-5">
         <Navbar />
-        <Grid >
-        <div style={{ height: '100vh', overflow: 'hidden' }}>
-          {showHeroSection && <HeroSection />}
-        <HeroSection />
-        </div>
-        <Dashboard />
-        <AppRoutes />
-        {/* Rest of your app components */}
-        {showSocialWall && <SocialWall />}
-        <MediaGallery />
-        <AboutUs />
-        <Footer />
+        <Grid>
+          <div style={{ height: '100vh', overflow: 'hidden' }}>
+            {showHeroSection && <HeroSection />}
+            <HeroSection />
+          </div>
+          <Dashboard />
+          <AppRoutes />
+          {/* Rest of your app components */}
+          {showSocialWall && <SocialWall />}
+          <MediaGallery />
+          <AboutUs />
+          <Footer />
         </Grid>
       </div>
     </Grid>
