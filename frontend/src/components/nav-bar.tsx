@@ -52,12 +52,14 @@ const Navbar = () => (
       >
         JSN
       </Button>
-      <Button
-        color="inherit"
-        style={{ background: '#FFBF34', marginRight: '5px' }}
-      >
-        Social Wall
-      </Button>
+      <Link to="/social_wall">
+        <Button
+          color="inherit"
+          style={{ background: '#FFBF34', marginRight: '5px' }}
+        >
+          Social Wall
+        </Button>
+      </Link>
       <Link to="/donate">
         <Button
           color="inherit"

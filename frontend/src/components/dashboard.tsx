@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Grid, Typography, Card, CardContent } from '@mui/material';
+import { Grid, Typography, Card, CardContent, Box } from '@mui/material';
 
 const Dashboard = () => {
   // Define state variables for the metrics
@@ -73,7 +73,10 @@ const Dashboard = () => {
   }, []);
 
   return (
-    <div style={{ padding: '20px' }}>
+    <Box sx={{
+      height: '100vh',
+        width: '100vw',
+    }}>
       <Typography variant="h4">Dashboard</Typography>
       <Grid container spacing={3} style={{ marginTop: '20px' }}>
         {/* Donations today */}
@@ -148,7 +151,7 @@ const Dashboard = () => {
           </Card>
         </Grid>
       </Grid>
-    </div>
+    </Box>
   );
 };
 

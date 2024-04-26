@@ -7,6 +7,7 @@ import {
   Switch,
   FormControlLabel,
 } from '@mui/material';
+import { Payment } from './Payment/payment';
 
 const DonationPage = () => {
   // Define state variables for the form inputs
@@ -20,6 +21,8 @@ const DonationPage = () => {
   // Handle the form submission
   const handleSubmit = () => {
     // Implement your proceed button logic here
+    const priceNumber: number = parseFloat(price);
+    Payment(priceNumber, name, email, parseInt(mobileNo));
     console.log({
       price,
       name,
