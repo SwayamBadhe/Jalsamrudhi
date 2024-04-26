@@ -43,6 +43,15 @@ const HeroSection = () => {
   const getImageUrl = (thumbnailUrl: string) => {
     return `http://localhost:5500${thumbnailUrl}`;
   };
+  const handlePreviousSlide = () => {
+    setCurrentSlideIndex(
+      (prevIndex) => (prevIndex - 1 + slides.length) % slides.length
+    );
+  };
+
+  const handleNextSlide = () => {
+    setCurrentSlideIndex((prevIndex) => (prevIndex + 1) % slides.length);
+  };
 
   // Get the current slide
   const currentSlide = slides[currentSlideIndex];
@@ -54,6 +63,8 @@ const HeroSection = () => {
           imageUrl={getImageUrl(currentSlide.thumbnailUrl)}
           alt={currentSlide.alt}
           description={currentSlide.description}
+          handlePreviousSlide={handlePreviousSlide}
+          handleNextSlide={handleNextSlide}
         />
       ) : (
         <div>Loading...</div>
