@@ -1,106 +1,97 @@
 import React, { useState, useEffect } from 'react';
 import { Grid, Typography, Card, CardContent, Box } from '@mui/material';
+import axios from 'axios';
+
+interface Order {
+  orderId: string;
+  orderAmount: number;
+  paymentId: string;
+  name: string;
+  email: string;
+  mobileNo: string;
+  msg: string;
+}
 
 const Dashboard = () => {
-  // Define state variables for the metrics
-  const [donationsToday, setDonationsToday] = useState(0);
-  const [deSiltingProgressToday, setDeSiltingProgressToday] = useState(0);
-  const [totalDeSiltingProgress, setTotalDeSiltingProgress] = useState(0);
-  const [trucksCarriedOut, setTrucksCarriedOut] = useState(0);
-  const [donationsFor80G, setDonationsFor80G] = useState(0);
-  const [farmersBenefitted, setFarmersBenefitted] = useState(0);
-  const [areaCovered, setAreaCovered] = useState(0);
+  const [ordersSum, setOrdersSum] = useState(0);
 
-  // Fetch data from the server when the component mounts
   useEffect(() => {
     // Fetch metrics data from server
     const fetchData = async () => {
       try {
-        // Fetch donations today
-        const donationsTodayResponse = await fetch(
-          'YOUR_SERVER_URL/donationsToday'
+        // Fetch orders and calculate the sum
+        const sumResponse = await axios.get<Order[]>(
+          'http://localhost:5500/order'
         );
-        const donationsTodayData = await donationsTodayResponse.json();
-        setDonationsToday(donationsTodayData);
-
-        // Fetch de-silting progress today
-        const deSiltingProgressTodayResponse = await fetch(
-          'YOUR_SERVER_URL/deSiltingProgressToday'
+        const ordersSum = sumResponse.data.reduce(
+          (total: number, order: Order) => total + order.orderAmount,
+          0
         );
-        const deSiltingProgressTodayData =
-          await deSiltingProgressTodayResponse.json();
-        setDeSiltingProgressToday(deSiltingProgressTodayData);
+        setOrdersSum(ordersSum);
 
-        // Fetch total de-silting progress
-        const totalDeSiltingProgressResponse = await fetch(
-          'YOUR_SERVER_URL/totalDeSiltingProgress'
-        );
-        const totalDeSiltingProgressData =
-          await totalDeSiltingProgressResponse.json();
-        setTotalDeSiltingProgress(totalDeSiltingProgressData);
-
-        // Fetch trucks carried out
-        const trucksCarriedOutResponse = await fetch(
-          'YOUR_SERVER_URL/trucksCarriedOut'
-        );
-        const trucksCarriedOutData = await trucksCarriedOutResponse.json();
-        setTrucksCarriedOut(trucksCarriedOutData);
-
-        // Fetch donations for 80G tax exemption
-        const donationsFor80GResponse = await fetch(
-          'YOUR_SERVER_URL/donationsFor80G'
-        );
-        const donationsFor80GData = await donationsFor80GResponse.json();
-        setDonationsFor80G(donationsFor80GData);
-
-        // Fetch number of farmers benefitted
-        const farmersBenefittedResponse = await fetch(
-          'YOUR_SERVER_URL/farmersBenefitted'
-        );
-        const farmersBenefittedData = await farmersBenefittedResponse.json();
-        setFarmersBenefitted(farmersBenefittedData);
-
-        // Fetch area covered
-        const areaCoveredResponse = await fetch('YOUR_SERVER_URL/areaCovered');
-        const areaCoveredData = await areaCoveredResponse.json();
-        setAreaCovered(areaCoveredData);
+        // Fetch other metrics data...
       } catch (error) {
         console.error('Error fetching data:', error);
       }
     };
 
     fetchData();
-  }, []);
+  }, [ordersSum]);
+
+  const totalDeSiltingProgress = (ordersSum / 85).toFixed(3);
+  const desiltProg = parseFloat(totalDeSiltingProgress);
+  const trucksCarriedOut = Math.ceil(desiltProg / 10000);
+  const farmersBenefitted = Math.ceil(desiltProg / 6000);
+  const areaCovered = (desiltProg / 5000).toFixed(3);
 
   return (
-    <Box sx={{
-      height: '100vh',
+    <Box
+      sx={{
+        height: '100vh',
         width: '100vw',
-    }}>
-      <Typography variant="h4" sx={{
-        display: 'flex',
-        width: '743px',
-        height: '208px',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        flexShrink: 0,
-        color: '#000',
-        fontFamily: '"DM Serif Display"',
-        fontSize: '96px',
-        fontStyle: 'normal',
-        fontWeight: '400',
-        lineHeight: '125%', /* 120px */
-        letterSpacing: '13.44px',
-        marginLeft: '25%',}}>OUR IMPACT</Typography>
+      }}
+    >
+      <Typography
+        variant="h4"
+        sx={{
+          display: 'flex',
+          width: '743px',
+          height: '208px',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          flexShrink: 0,
+          color: '#000',
+          fontFamily: '"DM Serif Display"',
+          fontSize: '96px',
+          fontStyle: 'normal',
+          fontWeight: '400',
+          lineHeight: '125%' /* 120px */,
+          letterSpacing: '13.44px',
+          marginLeft: '25%',
+        }}
+      >
+        OUR IMPACT
+      </Typography>
       <Grid container spacing={3} style={{ marginTop: '20px' }}>
         {/* Donations today */}
         <Grid item xs={12} sm={6} md={4}>
           <Card>
             <CardContent>
-              <Typography variant="h6" sx={{color: '#FF5C01',fontFamily: '"DM Serif Display"',fontSize: '40px',fontStyle: 'normal',fontWeight: '100',lineHeight: '80%', letterSpacing: '0px'}}>
+              <Typography
+                variant="h6"
+                sx={{
+                  color: '#FF5C01',
+                  fontFamily: '"DM Serif Display"',
+                  fontSize: '40px',
+                  fontStyle: 'normal',
+                  fontWeight: '100',
+                  lineHeight: '80%',
+                  letterSpacing: '0px',
+                }}
+              >
                 Donations
               </Typography>
-              <Typography variant="body1">{donationsToday}</Typography>
+              <Typography variant="body1">₹ {ordersSum}</Typography>
             </CardContent>
           </Card>
         </Grid>
@@ -109,10 +100,21 @@ const Dashboard = () => {
         <Grid item xs={12} sm={6} md={4}>
           <Card>
             <CardContent>
-              <Typography variant="h6"sx={{color: '#FF5C01',fontFamily: '"DM Serif Display"',fontSize: '40px',fontStyle: 'normal',fontWeight: '100',lineHeight: '80%', letterSpacing: '0px'}}>
+              <Typography
+                variant="h6"
+                sx={{
+                  color: '#FF5C01',
+                  fontFamily: '"DM Serif Display"',
+                  fontSize: '40px',
+                  fontStyle: 'normal',
+                  fontWeight: '100',
+                  lineHeight: '80%',
+                  letterSpacing: '0px',
+                }}
+              >
                 De-silting Progress
-                </Typography>
-              <Typography variant="body1">{deSiltingProgressToday}</Typography>
+              </Typography>
+              <Typography variant="body1">0000</Typography>
             </CardContent>
           </Card>
         </Grid>
@@ -121,10 +123,23 @@ const Dashboard = () => {
         <Grid item xs={12} sm={6} md={4}>
           <Card>
             <CardContent>
-              <Typography variant="h6" sx={{color: '#FF5C01',fontFamily: '"DM Serif Display"',fontSize: '40px',fontStyle: 'normal',fontWeight: '100',lineHeight: '80%', letterSpacing: '0px'}}>
+              <Typography
+                variant="h6"
+                sx={{
+                  color: '#FF5C01',
+                  fontFamily: '"DM Serif Display"',
+                  fontSize: '40px',
+                  fontStyle: 'normal',
+                  fontWeight: '100',
+                  lineHeight: '80%',
+                  letterSpacing: '0px',
+                }}
+              >
                 Total De-silting Progress
               </Typography>
-              <Typography variant="body1">{totalDeSiltingProgress}</Typography>
+              <Typography variant="body1">
+                {totalDeSiltingProgress} KG
+              </Typography>
             </CardContent>
           </Card>
         </Grid>
@@ -133,7 +148,18 @@ const Dashboard = () => {
         <Grid item xs={12} sm={6} md={4}>
           <Card>
             <CardContent>
-              <Typography variant="h6" sx={{color: '#FF5C01',fontFamily: '"DM Serif Display"',fontSize: '40px',fontStyle: 'normal',fontWeight: '100',lineHeight: '80%', letterSpacing: '0px'}}>
+              <Typography
+                variant="h6"
+                sx={{
+                  color: '#FF5C01',
+                  fontFamily: '"DM Serif Display"',
+                  fontSize: '40px',
+                  fontStyle: 'normal',
+                  fontWeight: '100',
+                  lineHeight: '80%',
+                  letterSpacing: '0px',
+                }}
+              >
                 Trucks Carried Out
               </Typography>
               <Typography variant="body1">{trucksCarriedOut}</Typography>
@@ -157,7 +183,20 @@ const Dashboard = () => {
         <Grid item xs={12} sm={6} md={4}>
           <Card>
             <CardContent>
-              <Typography variant="h6" sx={{color: '#FF5C01',fontFamily: '"DM Serif Display"',fontSize: '40px',fontStyle: 'normal',fontWeight: '100',lineHeight: '80%', letterSpacing: '0px'}}>Farmers Benefitted</Typography>
+              <Typography
+                variant="h6"
+                sx={{
+                  color: '#FF5C01',
+                  fontFamily: '"DM Serif Display"',
+                  fontSize: '40px',
+                  fontStyle: 'normal',
+                  fontWeight: '100',
+                  lineHeight: '80%',
+                  letterSpacing: '0px',
+                }}
+              >
+                Farmers Benefitted
+              </Typography>
               <Typography variant="body1">{farmersBenefitted}</Typography>
             </CardContent>
           </Card>
@@ -167,8 +206,21 @@ const Dashboard = () => {
         <Grid item xs={12} sm={6} md={4}>
           <Card>
             <CardContent>
-              <Typography variant="h6"sx={{color: '#FF5C01',fontFamily: '"DM Serif Display"',fontSize: '40px',fontStyle: 'normal',fontWeight: '100',lineHeight: '80%', letterSpacing: '0px'}}>Area Covered</Typography>
-              <Typography variant="body1">{areaCovered}</Typography>
+              <Typography
+                variant="h6"
+                sx={{
+                  color: '#FF5C01',
+                  fontFamily: '"DM Serif Display"',
+                  fontSize: '40px',
+                  fontStyle: 'normal',
+                  fontWeight: '100',
+                  lineHeight: '80%',
+                  letterSpacing: '0px',
+                }}
+              >
+                Area Covered
+              </Typography>
+              <Typography variant="body1">{areaCovered} acres</Typography>
             </CardContent>
           </Card>
         </Grid>
@@ -178,4 +230,3 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
-
