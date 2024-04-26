@@ -56,10 +56,10 @@ const Navbar = () => (
         <Button
           color="inherit"
           style={{ background: '#FFBF34', marginRight: '5px' }}
-          >
+        >
           Social Wall
         </Button>
-        </Link>
+      </Link>
       <Link to="/donate">
         <Button
           color="inherit"
