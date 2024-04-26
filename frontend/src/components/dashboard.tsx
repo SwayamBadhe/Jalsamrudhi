@@ -77,13 +77,29 @@ const Dashboard = () => {
       height: '100vh',
         width: '100vw',
     }}>
-      <Typography variant="h4">Dashboard</Typography>
+      <Typography variant="h4" sx={{
+        display: 'flex',
+        width: '743px',
+        height: '208px',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        flexShrink: 0,
+        color: '#000',
+        fontFamily: '"DM Serif Display"',
+        fontSize: '96px',
+        fontStyle: 'normal',
+        fontWeight: '400',
+        lineHeight: '125%', /* 120px */
+        letterSpacing: '13.44px',
+        marginLeft: '25%',}}>OUR IMPACT</Typography>
       <Grid container spacing={3} style={{ marginTop: '20px' }}>
         {/* Donations today */}
         <Grid item xs={12} sm={6} md={4}>
           <Card>
             <CardContent>
-              <Typography variant="h6">Donations Today</Typography>
+              <Typography variant="h6" sx={{color: '#FF5C01',fontFamily: '"DM Serif Display"',fontSize: '40px',fontStyle: 'normal',fontWeight: '100',lineHeight: '80%', letterSpacing: '0px'}}>
+                Donations
+              </Typography>
               <Typography variant="body1">{donationsToday}</Typography>
             </CardContent>
           </Card>
@@ -93,7 +109,9 @@ const Dashboard = () => {
         <Grid item xs={12} sm={6} md={4}>
           <Card>
             <CardContent>
-              <Typography variant="h6">De-silting Progress Today</Typography>
+              <Typography variant="h6"sx={{color: '#FF5C01',fontFamily: '"DM Serif Display"',fontSize: '40px',fontStyle: 'normal',fontWeight: '100',lineHeight: '80%', letterSpacing: '0px'}}>
+                De-silting Progress
+                </Typography>
               <Typography variant="body1">{deSiltingProgressToday}</Typography>
             </CardContent>
           </Card>
@@ -103,7 +121,9 @@ const Dashboard = () => {
         <Grid item xs={12} sm={6} md={4}>
           <Card>
             <CardContent>
-              <Typography variant="h6">Total De-silting Progress</Typography>
+              <Typography variant="h6" sx={{color: '#FF5C01',fontFamily: '"DM Serif Display"',fontSize: '40px',fontStyle: 'normal',fontWeight: '100',lineHeight: '80%', letterSpacing: '0px'}}>
+                Total De-silting Progress
+              </Typography>
               <Typography variant="body1">{totalDeSiltingProgress}</Typography>
             </CardContent>
           </Card>
@@ -113,29 +133,31 @@ const Dashboard = () => {
         <Grid item xs={12} sm={6} md={4}>
           <Card>
             <CardContent>
-              <Typography variant="h6">Trucks Carried Out</Typography>
+              <Typography variant="h6" sx={{color: '#FF5C01',fontFamily: '"DM Serif Display"',fontSize: '40px',fontStyle: 'normal',fontWeight: '100',lineHeight: '80%', letterSpacing: '0px'}}>
+                Trucks Carried Out
+              </Typography>
               <Typography variant="body1">{trucksCarriedOut}</Typography>
             </CardContent>
           </Card>
         </Grid>
 
-        {/* Donations for 80G tax exemption */}
+        {/* Donations for 80G tax exemption
         <Grid item xs={12} sm={6} md={4}>
           <Card>
             <CardContent>
-              <Typography variant="h6">
+              <Typography variant="h6" sx={{color: '#FF5C01',fontFamily: '"DM Serif Display"',fontSize: '40px',fontStyle: 'normal',fontWeight: '100',lineHeight: '80%', letterSpacing: '0px'}}>
                 Donations for 80G Tax Exemption
               </Typography>
               <Typography variant="body1">{donationsFor80G}</Typography>
             </CardContent>
           </Card>
-        </Grid>
+        </Grid> */}
 
         {/* Farmers benefitted */}
         <Grid item xs={12} sm={6} md={4}>
           <Card>
             <CardContent>
-              <Typography variant="h6">Farmers Benefitted</Typography>
+              <Typography variant="h6" sx={{color: '#FF5C01',fontFamily: '"DM Serif Display"',fontSize: '40px',fontStyle: 'normal',fontWeight: '100',lineHeight: '80%', letterSpacing: '0px'}}>Farmers Benefitted</Typography>
               <Typography variant="body1">{farmersBenefitted}</Typography>
             </CardContent>
           </Card>
@@ -145,7 +167,7 @@ const Dashboard = () => {
         <Grid item xs={12} sm={6} md={4}>
           <Card>
             <CardContent>
-              <Typography variant="h6">Area Covered</Typography>
+              <Typography variant="h6"sx={{color: '#FF5C01',fontFamily: '"DM Serif Display"',fontSize: '40px',fontStyle: 'normal',fontWeight: '100',lineHeight: '80%', letterSpacing: '0px'}}>Area Covered</Typography>
               <Typography variant="body1">{areaCovered}</Typography>
             </CardContent>
           </Card>
@@ -156,3 +178,4 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
+

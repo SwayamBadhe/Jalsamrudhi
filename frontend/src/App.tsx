@@ -7,11 +7,13 @@ import MediaGallery from './components/mediaGallery';
 import Navbar from './components/nav-bar';
 import AppRoutes from './routes/routes';
 import SocialWall from './components/social_wall';
+import Dashboard from './components/dashboard';
+
 
 function App() {
   const location = useLocation();
 
-  const showHeroSection = location.pathname !== '/donate';
+  const showHeroSection = location.pathname !== '/about';
   const showSocialWall = location.pathname !== '/social_wall';
   return (
     <Grid sx={{
@@ -20,14 +22,12 @@ function App() {
     }}>
       <div>
         <Navbar />
-        <Grid sx={{
-          // marginLeft:"10px",
-          // marginRight:"10px",
-        }}>
-
+        <Grid >
         <div style={{ height: '100vh', overflow: 'hidden' }}>
           {showHeroSection && <HeroSection />}
+        <HeroSection />
         </div>
+        <Dashboard />
         <AppRoutes />
         {/* Rest of your app components */}
         {showSocialWall && <SocialWall />}

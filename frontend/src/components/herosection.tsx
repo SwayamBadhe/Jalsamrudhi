@@ -58,11 +58,17 @@ const HeroSection = () => {
   const currentSlide = slides[currentSlideIndex];
 
   return (
-    <Grid>
+    <Grid
+      sx={{
+        width: '1920px',
+        height: '912px',
+        flexShrink: 0,
+      }}
+    >
       <>
         {slides.length > 0 && currentSlide ? (
           <ImageBox
-            imageUrl={getImageUrl(currentSlide.imageUrl)}
+            imageUrl={getImageUrl(currentSlide.thumbnailUrl)}
             alt={currentSlide.alt}
             description={currentSlide.description}
             handlePreviousSlide={handlePreviousSlide}
