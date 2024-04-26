@@ -3,6 +3,7 @@ import Toolbar from '@mui/material/Toolbar';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import styled from '@emotion/styled';
+import { Link } from 'react-router-dom';
 
 // Use styled for custom styles
 const StyledAppBar = styled(AppBar)({
@@ -15,7 +16,7 @@ const StyledTitle = styled(Typography)({
 
 const Navbar = () => (
   <StyledAppBar
-    position="static"
+    position="fixed"
     style={{
       background:
         'linear-gradient(90deg, rgba(227,164,38,1) 0%, rgba(225,169,57,1) 17%, rgba(0,212,255,1) 100%)',
@@ -23,18 +24,22 @@ const Navbar = () => (
   >
     <Toolbar>
       <StyledTitle variant="h6">Navbar</StyledTitle>
-      <Button
-        color="inherit"
-        style={{ background: '#FFBF34', marginRight: '5px' }}
-      >
-        About
-      </Button>
-      <Button
-        color="inherit"
-        style={{ background: '#FFBF34', marginRight: '5px' }}
-      >
-        What we do
-      </Button>
+      <Link to="/about">
+        <Button
+          color="inherit"
+          style={{ background: '#FFBF34', marginRight: '5px' }}
+        >
+          About
+        </Button>
+      </Link>
+      <Link to="/dashboard">
+        <Button
+          color="inherit"
+          style={{ background: '#FFBF34', marginRight: '5px' }}
+        >
+          Dashboard
+        </Button>
+      </Link>
       <Button
         color="inherit"
         style={{ background: '#FFBF34', marginRight: '5px' }}
@@ -53,12 +58,14 @@ const Navbar = () => (
       >
         Social Wall
       </Button>
-      <Button
-        color="inherit"
-        style={{ background: '#FFBF34', marginRight: '5px' }}
-      >
-        Donate
-      </Button>
+      <Link to="/donate">
+        <Button
+          color="inherit"
+          style={{ background: '#FFBF34', marginRight: '5px' }}
+        >
+          Donate
+        </Button>
+      </Link>
     </Toolbar>
   </StyledAppBar>
 );
