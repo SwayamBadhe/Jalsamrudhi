@@ -128,6 +128,7 @@ export interface Media_Gallery {
 export interface AboutUs {
   id: string;
   content: string;
+  image: string | Media;
   updatedAt: string;
   createdAt: string;
 }

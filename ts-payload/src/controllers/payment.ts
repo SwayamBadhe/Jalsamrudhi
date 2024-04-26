@@ -1,6 +1,7 @@
 import Razorpay from 'razorpay';
 import crypto from 'crypto';
 import { Request, Response } from 'express';
+const Order = require('../models/payment');
 
 const razorpay = new Razorpay({
   key_id: 'rzp_test_a6p988jDCASdbT',
@@ -46,4 +47,28 @@ const validateOrder = async (req: Request, res: Response) => {
   });
 };
 
-export { order, validateOrder };
+const postOrderInfo = async (req, res) => {
+  try {
+    const { orderId, orderAmount, paymentId, name, email, mobileNo, msg } =
+      req.body;
+
+    const order = new Order({
+      orderId,
+      orderAmount,
+      paymentId,
+      name,
+      email,
+      mobileNo,
+      msg,
+    });
+
+    await order.save();
+
+    res.status(201).json({ message: 'Order info saved successfully' });
+  } catch (error) {
+    console.error('Error saving order info:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+};
+
+export { order, validateOrder, postOrderInfo };

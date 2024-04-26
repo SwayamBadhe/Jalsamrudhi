@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
 import {
-  Grid,
-  TextField,
   Button,
-  Typography,
-  Switch,
   FormControlLabel,
+  Grid,
+  Switch,
+  TextField,
+  Typography,
 } from '@mui/material';
+import { useState } from 'react';
 import { Payment } from './Payment/payment';
 import { Link } from 'react-router-dom';
 import   jalLogo from '../Image/jalLogo.jpg';
@@ -20,20 +20,9 @@ const DonationPage = () => {
   const [requireTaxExemption, setRequireTaxExemption] = useState(false);
   const [panDetails, setPanDetails] = useState('');
 
-  // Handle the form submission
   const handleSubmit = () => {
-    // Implement your proceed button logic here
     const priceNumber: number = parseFloat(price);
-    Payment(priceNumber, name, email, parseInt(mobileNo));
-    console.log({
-      price,
-      name,
-      email,
-      mobileNo,
-      requireTaxExemption,
-      panDetails,
-    });
-    alert('Form submitted!');
+    Payment(priceNumber, name, email, parseInt(mobileNo), panDetails);
   };
 
   return (

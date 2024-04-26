@@ -9,7 +9,7 @@ interface MediaItem {
   description: string;
   filename: string;
   createdAt: string;
-  thumbnailUrl: string;
+  imageUrl: string;
 }
 
 const HeroSection = () => {
@@ -41,8 +41,8 @@ const HeroSection = () => {
     fetchMedia();
   }, []);
 
-  const getImageUrl = (thumbnailUrl: string) => {
-    return `http://localhost:5500${thumbnailUrl}`;
+  const getImageUrl = (imageUrl: string) => {
+    return `http://localhost:5500${imageUrl}`;
   };
   const handlePreviousSlide = () => {
     setCurrentSlideIndex(
@@ -58,28 +58,27 @@ const HeroSection = () => {
   const currentSlide = slides[currentSlideIndex];
 
   return (
-    <Grid sx={{
-      width: '1920px',
-      height: '912px',
-      flexShrink: 0
-    }
-    }>
-
-    <>
-      {slides.length > 0 && currentSlide ? (
-        <ImageBox
-          imageUrl={getImageUrl(currentSlide.thumbnailUrl)}
-          alt={currentSlide.alt}
-          description={currentSlide.description}
-          handlePreviousSlide={handlePreviousSlide}
-          handleNextSlide={handleNextSlide}
-          
+    <Grid
+      sx={{
+        width: '1920px',
+        height: '912px',
+        flexShrink: 0,
+      }}
+    >
+      <>
+        {slides.length > 0 && currentSlide ? (
+          <ImageBox
+            imageUrl={getImageUrl(currentSlide.imageUrl)}
+            alt={currentSlide.alt}
+            description={currentSlide.description}
+            handlePreviousSlide={handlePreviousSlide}
+            handleNextSlide={handleNextSlide}
           />
         ) : (
-        <div>Loading...</div>
-      )}
-    </>
-      </Grid>
+          <div>Loading...</div>
+        )}
+      </>
+    </Grid>
   );
 };
 

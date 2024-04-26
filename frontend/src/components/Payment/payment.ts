@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { generateDonationReceiptPdf } from './generateDonationReceiptPdf';
 
 interface RazorpayOptions {
   key: string;
@@ -41,15 +42,43 @@ interface PaymentHandler {
     amount: number,
     name: string,
     email: string,
-    mobileNo: number
+    mobileNo: number,
+    panDetails: string
   ): Promise<void>;
 }
+
+const postRaymentInfo = async (
+  orderId: string,
+  orderAmount: number,
+  paymentId: string,
+  name: string,
+  email: string,
+  mobileNo: string,
+  msg: string
+) => {
+  try {
+    const response = await axios.post('http://localhost:5500/order/orderInfo', {
+      orderId,
+      orderAmount,
+      paymentId,
+      name,
+      email,
+      mobileNo,
+      msg,
+    });
+
+    console.log('Receipt generated:', response.data);
+  } catch (error) {
+    console.error('Error generating receipt:', error);
+  }
+};
 
 export const Payment: PaymentHandler = async (
   amount,
   name,
   email,
-  mobileNo
+  mobileNo,
+  panDetails
 ) => {
   const mobileNumber = String(mobileNo);
   const newAmount = amount * 100;
@@ -59,7 +88,7 @@ export const Payment: PaymentHandler = async (
     // receipt: receiptId,
   });
   const order = await response.data;
-  // console.log(order);
+  console.log('order', order);
 
   var options = {
     key: 'rzp_test_GkhWJfJbqiIQjD', // Enter the Key ID generated from the Dashboard
@@ -69,6 +98,7 @@ export const Payment: PaymentHandler = async (
     description: 'Test Transaction',
     image: 'https://example.com/your_logo',
     order_id: order.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+
     handler: async function (response: any) {
       const body = {
         ...response,
@@ -85,8 +115,31 @@ export const Payment: PaymentHandler = async (
       );
 
       const jsonRes = await validateRes.data;
-      // console.log(jsonRes);
+      console.log('jsonRes', jsonRes);
+      const orderId = jsonRes.orderId;
+      const payment_id = jsonRes.paymentId;
+      const msg = jsonRes.msg;
+
+      await postRaymentInfo(
+        name,
+        amount,
+        email,
+        mobileNumber,
+        orderId,
+        payment_id,
+        msg
+      );
+
+      generateDonationReceiptPdf({
+        name,
+        amount,
+        email,
+        orderId,
+        payment_id,
+        panDetails,
+      });
     },
+
     prefill: {
       //We recommend using the prefill parameter to auto-fill customer's contact information, especially their phone number
       name, //your customer's name
@@ -102,13 +155,8 @@ export const Payment: PaymentHandler = async (
   };
   var rzp1 = new window.Razorpay(options);
   rzp1.on('payment.failed', function (response: any) {
-    alert(response.error.code);
     alert(response.error.description);
-    alert(response.error.source);
-    alert(response.error.step);
     alert(response.error.reason);
-    alert(response.error.metadata.order_id);
-    alert(response.error.metadata.payment_id);
   });
   rzp1.open();
   // e.preventDefault();

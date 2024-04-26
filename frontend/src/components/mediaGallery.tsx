@@ -6,7 +6,7 @@ interface MediaItem {
   alt: string;
   filename: string;
   createdAt: string;
-  thumbnailUrl: string;
+  imageUrl: string;
 }
 
 const MediaGallery = () => {
@@ -17,6 +17,7 @@ const MediaGallery = () => {
       try {
         const response = await axios.get('http://localhost:5500/fetch-media');
         setMedia(response.data);
+        console.log(response.data);
       } catch (error) {
         if (axios.isAxiosError(error)) {
           console.error('Axios error:', error.message);
@@ -27,8 +28,8 @@ const MediaGallery = () => {
     fetchMedia();
   }, []);
 
-  const getImageUrl = (thumbnailUrl: string) => {
-    return `http://localhost:5500${thumbnailUrl}`;
+  const getImageUrl = (imageUrl: string) => {
+    return `http://localhost:5500${imageUrl}`;
   };
 
   return (
@@ -36,7 +37,7 @@ const MediaGallery = () => {
       <div className="grid grid-cols-3 gap-6">
         {media.map((item) => (
           <div key={item.id} className="relative">
-            <img src={getImageUrl(item.thumbnailUrl)} alt={item.alt} />
+            <img src={getImageUrl(item.imageUrl)} alt={item.alt} />
           </div>
         ))}
       </div>
