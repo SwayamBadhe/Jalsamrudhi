@@ -7,6 +7,7 @@ import AppRoutes from './routes/routes';
 import { Grid } from '@mui/material';
 import Footer from './components/footer';
 import Payment from './components/Payment/payment';
+import SocialWall from './components/social_wall';
 
 function App() {
   const location = useLocation();
@@ -20,6 +21,7 @@ function App() {
         <AppRoutes />
         {/* Rest of your app components */}
         <MediaGallery />
+        <SocialWall />
         <AboutUs />
         <Payment />
         <Footer />
