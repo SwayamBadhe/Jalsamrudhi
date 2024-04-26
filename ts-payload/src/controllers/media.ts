@@ -14,8 +14,7 @@ const getAllMedia = async (req, res) => {
     filename: item.filename,
     createdAt: item.createdAt,
     updatedAt: item.updatedAt,
-    thumbnailUrl: item.sizes.thumbnail.url,
-    tabletUrl: item.sizes.tablet.url,
+    imageUrl: item.url,
   }));
 
   res.json(media_card);
