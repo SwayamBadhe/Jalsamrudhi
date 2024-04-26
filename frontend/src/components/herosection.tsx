@@ -68,7 +68,7 @@ const HeroSection = () => {
       <>
         {slides.length > 0 && currentSlide ? (
           <ImageBox
-            imageUrl={getImageUrl(currentSlide.thumbnailUrl)}
+            imageUrl={getImageUrl(currentSlide.imageUrl)}
             alt={currentSlide.alt}
             description={currentSlide.description}
             handlePreviousSlide={handlePreviousSlide}
