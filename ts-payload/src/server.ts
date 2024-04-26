@@ -6,6 +6,7 @@ import bodyParser from 'body-parser';
 
 const mediaRouter = require('./routes/media');
 const donateRouter = require('./routes/payment');
+const articleRouter = require('./routes/article');
 
 dotenv.config();
 
@@ -19,6 +20,7 @@ app.use(cors());
 // Routes
 app.use('/fetch-media', mediaRouter);
 app.use('/order', donateRouter);
+app.use('/fetch-article', articleRouter);
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
