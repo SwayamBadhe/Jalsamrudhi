@@ -1,9 +1,9 @@
 const express = require('express');
-const router = express.Router();
+const mediaRouter = express.Router();
 
 const { getAllMedia, getMediaById } = require('../controllers/media');
 
-router.route('/').get(getAllMedia);
-router.route('/:id').get(getMediaById);
+mediaRouter.route('/').get(getAllMedia);
+mediaRouter.route('/:id').get(getMediaById);
 
-module.exports = router;
+module.exports = mediaRouter;
