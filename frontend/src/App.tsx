@@ -6,6 +6,7 @@ import HeroSection from './components/herosection';
 import MediaGallery from './components/mediaGallery';
 import Navbar from './components/nav-bar';
 import AppRoutes from './routes/routes';
+import SocialWall from './components/social_wall';
 
 function App() {
   const location = useLocation();
