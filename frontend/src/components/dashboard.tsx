@@ -38,10 +38,10 @@ const Dashboard = () => {
     fetchData();
   }, [ordersSum]);
 
-  const totalDeSiltingProgress = (ordersSum / 85).toFixed(3);
+  const totalDeSiltingProgress = (ordersSum / 5).toFixed(3);
   const desiltProg = parseFloat(totalDeSiltingProgress);
   const trucksCarriedOut = Math.ceil(desiltProg / 10000);
-  const farmersBenefitted = Math.ceil(desiltProg / 6000);
+  const farmersBenefitted = Math.ceil(desiltProg / 2000);
   const areaCovered = (desiltProg / 5000).toFixed(3);
 
   return (
