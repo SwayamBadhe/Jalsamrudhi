@@ -1,5 +1,5 @@
-import { Button, Grid } from "@mui/material";
-import { Link } from "react-router-dom";
+import {  Grid } from "@mui/material";
+// import { Link } from "react-router-dom";
 
 const AboutUs = () => {
   return (
@@ -40,19 +40,6 @@ const AboutUs = () => {
         </div>
       </div>
     </div>
-    <Link to="/donate">
-        <Button
-          variant="contained"
-          color="primary"
-          sx={{
-            position: 'absolute', // Position the button absolutely within the Grid
-            bottom: '20px', // Position the button 20px from the bottom
-            right: '20px', // Position the button 20px from the right
-          }}
-        >
-          Donate
-        </Button>
-      </Link>
     </Grid>
   );
 };

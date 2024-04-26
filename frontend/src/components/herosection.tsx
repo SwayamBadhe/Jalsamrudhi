@@ -58,7 +58,12 @@ const HeroSection = () => {
   const currentSlide = slides[currentSlideIndex];
 
   return (
-    <Grid >
+    <Grid sx={{
+      width: '1920px',
+      height: '912px',
+      flexShrink: 0
+    }
+    }>
 
     <>
       {slides.length > 0 && currentSlide ? (

@@ -1,7 +1,7 @@
 import { ArrowBack, ArrowForward } from '@mui/icons-material';
-import { Box, Button, IconButton, Typography } from '@mui/material';
+import { Box,  IconButton, Typography } from '@mui/material';
 import React from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 
 interface ImageBoxProps {
   imageUrl: string;
@@ -59,9 +59,10 @@ const ImageBox: React.FC<ImageBoxProps> = ({
           onClick={handlePreviousSlide}
           sx={{
             position: 'absolute',
-            left: '10px',
+            left: '100px',
             top: '50%',
             transform: 'translateY(-50%)',
+            background:'#FF5C01',
           }}
         >
           <ArrowBack sx={{ color: 'white' }} />
@@ -69,13 +70,27 @@ const ImageBox: React.FC<ImageBoxProps> = ({
 
         {/* Slide text */}
         <Box sx={{ padding: '20px', color: 'white', textAlign: 'center' }}>
-          <Typography variant="h3" sx={{ mb: 2 }}>
+          <Typography variant="h3" sx={{ mb: 2,
+            color: '#FFF',
+            fontFamily: '"DM Serif Display"',
+            fontSize: '65px',
+            fontStyle: 'normal',
+            fontWeight: '400',
+            lineHeight: '125%', 
+            }}>
             {alt}
           </Typography>
-          <Typography variant="h6" sx={{ mb: 2 }}>
+          <Typography variant="h6" sx={{ mb: 2 ,
+            color: '#FFF',
+            fontFamily: '"DM Serif Display"',
+            fontSize: '65px',
+            fontStyle: 'normal',
+            fontWeight: '400',
+            lineHeight: '125%', /* 81.25px */
+          }}>
             {description}
           </Typography>
-          {/* Add a "Donate" button */}
+          {/* Add a "Donate" button
           <Link to="/donate">
             <Button
               variant="contained"
@@ -84,7 +99,7 @@ const ImageBox: React.FC<ImageBoxProps> = ({
             >
               Donate
             </Button>
-          </Link>
+          </Link> */}
         </Box>
 
         {/* Right arrow button */}
@@ -92,9 +107,10 @@ const ImageBox: React.FC<ImageBoxProps> = ({
           onClick={handleNextSlide}
           sx={{
             position: 'absolute',
-            right: '10px',
+            right: '100px',
             top: '50%',
             transform: 'translateY(-50%)',
+            background:'#FF5C01',
           }}
         >
           <ArrowForward sx={{ color: 'white' }} />
