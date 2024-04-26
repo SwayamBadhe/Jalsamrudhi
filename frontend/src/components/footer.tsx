@@ -1,5 +1,6 @@
 import { Button, Grid, Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
+import jalLogo from '../Image/jalLogo.jpg';
 
 const Footer = () => {
   return (
@@ -14,6 +15,10 @@ const Footer = () => {
       <Grid container spacing={3}>
         {/* First part: Contact Us information */}
         <Grid item xs={12} md={4}>
+          <img
+              src={jalLogo}// Replace this with your image URL
+              alt="Logo" // Provide an alt text for accessibility
+              style={{width: '120px',height: '120px',borderRadius: '50%', marginRight: '10px',marginBottom: '10px',marginTop: '5px',}}/>
           <Typography variant="h6">Contact Us</Typography>
           <Typography>Mobile: +91 0000000000</Typography>
           <Typography>Email: test@gmail.com</Typography>
