@@ -6,6 +6,7 @@ import Navbar from './components/nav-bar';
 import AppRoutes from './routes/routes';
 import { Grid } from '@mui/material';
 import Footer from './components/footer';
+import Payment from './components/Payment/payment';
 
 function App() {
   const location = useLocation();
@@ -20,6 +21,7 @@ function App() {
         {/* Rest of your app components */}
         <MediaGallery />
         <AboutUs />
+        <Payment />
         <Footer />
       </div>
     </Grid>
