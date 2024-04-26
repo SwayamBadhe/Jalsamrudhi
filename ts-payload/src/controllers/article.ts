@@ -13,6 +13,8 @@ const getAllJSN = async (req, res) => {
     createdAt: item.createdAt,
     updatedAt: item.updatedAt,
   }));
+
+  res.json(articleItem);
 };
 
 module.exports = {
