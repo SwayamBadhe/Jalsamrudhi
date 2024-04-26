@@ -6,9 +6,9 @@ const Footer = () => {
     <footer
       style={{
         padding: '20px',
-        backgroundColor: '#f0f0f0',
+        backgroundColor: '#FFF',
         background:
-          'linear-gradient(90deg, rgba(227,164,38,1) 0%, rgba(225,169,57,1) 17%, rgba(0,212,255,1) 100%)',
+          '##E6D0FF',
       }}
     >
       <Grid container spacing={3}>

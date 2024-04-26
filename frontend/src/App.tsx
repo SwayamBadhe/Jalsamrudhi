@@ -19,6 +19,7 @@ function App() {
     <Grid sx={{
       marginLeft:"10px",
       marginRight:"10px",
+      
     }}>
       <div>
         <Navbar />

@@ -9,6 +9,7 @@ import {
 } from '@mui/material';
 import { Payment } from './Payment/payment';
 import { Link } from 'react-router-dom';
+import   jalLogo from '../Image/jalLogo.jpg';
 
 const DonationPage = () => {
   // Define state variables for the form inputs
@@ -39,16 +40,40 @@ const DonationPage = () => {
     <div style={{ padding: '20px' }}>
 
       <Link to='/donate'></Link>
-            <Typography variant="h4"sx={{marginLeft:'47%',marginBottom:'50px',}}>Donation</Typography>
+            <Typography variant="h4"sx={{marginLeft:'47%',marginBottom:'50px',display: 'flex',
+                        width: '170px',
+                        height: '66px',
+                        padding: '26px 37px',
+                        flexDirection: 'column',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        gap: '10px',
+                        flexShrink: 0,
+                        borderRadius: '15px',
+                        background: '#FF5C01',
+                        color:'#FFF',
+                        boxShadow: '0px 10px 20px 0px #1F2022',
+                        }}>Donation</Typography>
 
             <Grid container spacing={2} style={{ marginTop: '20px' }}>
                 {/* Contact information */}
-                <Grid item xs={12} md={4}>
-                    <Typography variant="h6">Contact Information</Typography>
-                    <Typography variant="body1">
+                <Grid item xs={12} md={4} sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' ,background:'white'}}>
+                    <Typography variant="h5" >Contact Information</Typography>
+                    <img
+                    src={jalLogo}// Replace this with your image URL
+                    alt="Logo" // Provide an alt text for accessibility
+                    style={{
+                        width: '120px',
+                        height: '120px',
+                        borderRadius: '50%',
+                        marginRight: '10px',
+                        marginBottom: '10px',
+                        marginTop: '5px',
+                    }}/>
+                    <Typography variant="h5" >
                         Mobile: +91 0000000000
                     </Typography>
-                    <Typography variant="body1">
+                    <Typography variant="h5" >
                         Email: test@gmail.com
                     </Typography>
                     {/* Add any additional contact information here */}
@@ -65,6 +90,7 @@ const DonationPage = () => {
                                 fullWidth
                                 value={price}
                                 onChange={(e) => setPrice(e.target.value)}
+                                sx={{background:'#FFF',}}
                                 required
                             />
                         </Grid>
@@ -76,6 +102,7 @@ const DonationPage = () => {
                                 fullWidth
                                 value={name}
                                 onChange={(e) => setName(e.target.value)}
+                                sx={{background:'#FFF',}}
                                 required
                             />
                         </Grid>
@@ -88,6 +115,7 @@ const DonationPage = () => {
                                 fullWidth
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
+                                sx={{background:'#FFF',}}
                                 required
                             />
                         </Grid>
@@ -100,6 +128,7 @@ const DonationPage = () => {
                                 fullWidth
                                 value={mobileNo}
                                 onChange={(e) => setMobileNo(e.target.value)}
+                                sx={{background:'#FFF',}}
                                 inputProps={{ pattern: '\\+91[0-9]{10}' }} // Regex pattern to validate mobile number format
                                 required
                             />
@@ -127,6 +156,7 @@ const DonationPage = () => {
                                     fullWidth
                                     value={panDetails}
                                     onChange={(e) => setPanDetails(e.target.value)}
+                                    sx={{background:'#FFF',}}
                                     required
                                 />
                             </Grid>
