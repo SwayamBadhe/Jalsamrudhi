@@ -12,6 +12,7 @@ export interface Config {
     media: Media;
     media_Gallery: Media_Gallery;
     about_us: AboutUs;
+    jsn: Jsn;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
@@ -129,6 +130,16 @@ export interface AboutUs {
   id: string;
   content: string;
   image: string | Media;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "jsn".
+ */
+export interface Jsn {
+  id: string;
+  text: string;
   updatedAt: string;
   createdAt: string;
 }
