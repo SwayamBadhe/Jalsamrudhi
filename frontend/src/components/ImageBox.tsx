@@ -9,6 +9,7 @@ interface ImageBoxProps {
   description: string;
   handlePreviousSlide: () => void;
   handleNextSlide: () => void;
+  
 }
 
 const ImageBox: React.FC<ImageBoxProps> = ({
@@ -29,8 +30,8 @@ const ImageBox: React.FC<ImageBoxProps> = ({
     // </div>
     <Box
       sx={{
-        height: '400px',
-        width: '100%',
+        height: '100vh',
+        width: '100vw',
         backgroundImage: `url(${imageUrl})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',

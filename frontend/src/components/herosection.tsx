@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import ImageBox from './ImageBox';
+import { Grid } from '@mui/material';
 
 interface MediaItem {
   id: string;
@@ -57,6 +58,8 @@ const HeroSection = () => {
   const currentSlide = slides[currentSlideIndex];
 
   return (
+    <Grid >
+
     <>
       {slides.length > 0 && currentSlide ? (
         <ImageBox
@@ -65,11 +68,13 @@ const HeroSection = () => {
           description={currentSlide.description}
           handlePreviousSlide={handlePreviousSlide}
           handleNextSlide={handleNextSlide}
-        />
-      ) : (
+          
+          />
+        ) : (
         <div>Loading...</div>
       )}
     </>
+      </Grid>
   );
 };
 

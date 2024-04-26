@@ -13,18 +13,31 @@ function App() {
   const location = useLocation();
 
   const showHeroSection = location.pathname !== '/donate';
+  const showSocialWall = location.pathname !== '/social_wall';
   return (
-    <Grid>
+    <Grid sx={{
+      marginLeft:"10px",
+      marginRight:"10px",
+    }}>
       <div>
         <Navbar />
-        {showHeroSection && <HeroSection />}
+        <Grid sx={{
+          // marginLeft:"10px",
+          // marginRight:"10px",
+        }}>
+
+        <div style={{ height: '100vh', overflow: 'hidden' }}>
+          {showHeroSection && <HeroSection />}
+        </div>
         <AppRoutes />
         {/* Rest of your app components */}
+        {showSocialWall && <SocialWall />}
         <MediaGallery />
         {/* <SocialWall /> */}
         <AboutUs />
         <Payment />
         <Footer />
+        </Grid>
       </div>
     </Grid>
   );
