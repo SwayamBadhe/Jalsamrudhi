@@ -8,6 +8,8 @@ import { buildConfig } from 'payload/config';
 
 import Users from './collections/Users';
 import { Media } from './collections/Media';
+import { Media_Gallery } from './collections/MediaPhotoGallery';
+import { AboutUs } from './collections/About_us';
 
 export default buildConfig({
   admin: {
@@ -15,7 +17,7 @@ export default buildConfig({
     bundler: webpackBundler(),
   },
   editor: slateEditor({}),
-  collections: [Users, Media],
+  collections: [Users, Media, Media_Gallery, AboutUs],
   typescript: {
     outputFile: path.resolve(__dirname, 'payload-types.ts'),
   },
