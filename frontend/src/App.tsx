@@ -1,13 +1,11 @@
+import { Grid } from '@mui/material';
 import { useLocation } from 'react-router-dom';
 import AboutUs from './components/aboutUs';
+import Footer from './components/footer';
 import HeroSection from './components/herosection';
 import MediaGallery from './components/mediaGallery';
 import Navbar from './components/nav-bar';
 import AppRoutes from './routes/routes';
-import { Grid } from '@mui/material';
-import Footer from './components/footer';
-import Payment from './components/Payment/payment';
-import SocialWall from './components/social_wall';
 
 function App() {
   const location = useLocation();
@@ -19,11 +17,8 @@ function App() {
         <Navbar />
         {showHeroSection && <HeroSection />}
         <AppRoutes />
-        {/* Rest of your app components */}
         <MediaGallery />
-        {/* <SocialWall /> */}
         <AboutUs />
-        <Payment />
         <Footer />
       </div>
     </Grid>
