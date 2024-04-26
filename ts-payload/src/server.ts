@@ -1,8 +1,8 @@
+import bodyParser from 'body-parser';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import express from 'express';
 import payload from 'payload';
-import bodyParser from 'body-parser';
 
 const mediaRouter = require('./routes/media');
 const donateRouter = require('./routes/payment');
