@@ -13,5 +13,12 @@ export const AboutUs: CollectionConfig = {
       required: true,
       maxLength: 1000,
     },
+    {
+      name: 'image',
+      label: 'Image',
+      type: 'upload',
+      relationTo: 'media',
+      required: true,
+    },
   ],
 };
