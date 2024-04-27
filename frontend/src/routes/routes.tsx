@@ -8,11 +8,10 @@ import Jsn from '../components/jsn';
 const AppRoutes = () => {
   return (
     <Routes>
-      {/* Define the route for the donation page */}
       <Route path="/donate" element={<DonationPage />} />
-      <Route path="/about" element={<About />} />
-      <Route path="/dashboard" element={<Dashboard />} />
-      <Route path="/social_wall" element={<SocialWall />} />
+      {/* <Route path="/about" element={<About />} /> */}
+      {/* <Route path="/dashboard" element={<Dashboard />} /> */}
+      {/* <Route path="/social_wall" element={<SocialWall />} /> */}
       <Route path="/jsn" element={<Jsn />} />
       {/* Add more routes as needed */}
     </Routes>
