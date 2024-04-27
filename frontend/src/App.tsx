@@ -1,41 +1,44 @@
-import { Grid } from '@mui/material';
-import { useLocation } from 'react-router-dom';
+import React, { useRef } from 'react';
 import AboutUs from './components/aboutUs';
+import Dashboard from './components/dashboard';
+import Jsn from './components/jsn';
 import Footer from './components/footer';
 import HeroSection from './components/herosection';
 import MediaGallery from './components/mediaGallery';
-import Navbar from './components/nav-bar';
-import AppRoutes from './routes/routes';
 import SocialWall from './components/social_wall';
-import Dashboard from './components/dashboard';
+import AppRoutes from './routes/routes';
+import Navbar from './components/nav-bar';
+import { Grid } from '@mui/material';
+import DonationPage from './components/donate';
 
 function App() {
-  const location = useLocation();
+  const aboutRef = useRef<HTMLDivElement>(null);
+  const dashboardRef = useRef<HTMLDivElement>(null);
+  const jsnRef = useRef<HTMLDivElement>(null);
+  const socialWallRef = useRef<HTMLDivElement>(null);
+  const donationRef = useRef<HTMLDivElement>(null);
 
-  const showHeroSection = location.pathname !== '/about';
-  const showSocialWall = location.pathname !== '/social_wall';
   return (
-    <Grid
-      sx={{
-        marginLeft: '10px',
-        marginRight: '10px',
-      }}
-    >
+    <Grid sx={{ marginLeft: '10px', marginRight: '10px' }}>
       <div className="max-w-screen-2xl mr-5">
-        <Navbar />
-        <Grid>
-          <div style={{ height: '100vh', overflow: 'hidden' }}>
-            {showHeroSection && <HeroSection />}
-            <HeroSection />
-          </div>
-          <Dashboard />
-          <AppRoutes />
-          {/* Rest of your app components */}
-          {showSocialWall && <SocialWall />}
-          <MediaGallery />
-          <AboutUs />
-          <Footer />
-        </Grid>
+        <Navbar
+          aboutRef={aboutRef}
+          dashboardRef={dashboardRef}
+          jsnRef={jsnRef}
+          socialWallRef={socialWallRef}
+          donationRef={donationRef}
+        />
+        <div style={{ height: '100vh', overflow: 'hidden' }}>
+          <HeroSection />
+        </div>
+        <Dashboard ref={dashboardRef} />
+        {/* <AppRoutes /> */}
+        <SocialWall ref={socialWallRef} />
+        <MediaGallery />
+        <DonationPage ref={donationRef} />
+        <Jsn ref={jsnRef} />
+        <AboutUs ref={aboutRef} />
+        <Footer />
       </div>
     </Grid>
   );
