@@ -1,6 +1,5 @@
 import axios from 'axios';
-import { generateDonationReceiptPdf } from './generateDonationReceiptPdf';
-import { __String } from 'typescript';
+import { generateDonationReceiptPDF } from './generateDonationReceiptPdf';
 
 interface RazorpayOptions {
   key: string;
@@ -134,13 +133,14 @@ export const Payment: PaymentHandler = async (
         panDetails
       );
 
-      generateDonationReceiptPdf({
+      generateDonationReceiptPDF({
         name,
         amount,
         email,
-        orderId,
+        // orderId,
         payment_id,
         panDetails,
+        mobileNumber,
       });
     },
 
