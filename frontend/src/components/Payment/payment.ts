@@ -1,5 +1,6 @@
-import axios from "axios";
-import { generateDonationReceiptPdf } from "./generateDonationReceiptPdf";
+import axios from 'axios';
+import { generateDonationReceiptPdf } from './generateDonationReceiptPdf';
+import { __String } from 'typescript';
 
 interface RazorpayOptions {
   key: string;
@@ -54,10 +55,11 @@ const postRaymentInfo = async (
   name: string,
   email: string,
   mobileNo: string,
-  msg: string
+  msg: string,
+  panDetails: string
 ) => {
   try {
-    const response = await axios.post("http://localhost:5500/order/orderInfo", {
+    const response = await axios.post('http://localhost:5500/order/orderInfo', {
       orderId,
       orderAmount,
       paymentId,
@@ -65,11 +67,12 @@ const postRaymentInfo = async (
       email,
       mobileNo,
       msg,
+      panDetails,
     });
 
-    console.log("Receipt generated:", response.data);
+    console.log('Receipt generated:', response.data);
   } catch (error) {
-    console.error("Error generating receipt:", error);
+    console.error('Error generating receipt:', error);
   }
 };
 
@@ -82,21 +85,21 @@ export const Payment: PaymentHandler = async (
 ) => {
   const mobileNumber = String(mobileNo);
   const newAmount = amount * 100;
-  const response = await axios.post("http://localhost:5500/order", {
+  const response = await axios.post('http://localhost:5500/order', {
     amount: newAmount,
-    currency: "INR",
+    currency: 'INR',
     // receipt: receiptId,
   });
   const order = await response.data;
-  console.log("order", order);
+  console.log('order', order);
 
   var options = {
-    key: "rzp_test_GkhWJfJbqiIQjD", // Enter the Key ID generated from the Dashboard
+    key: 'rzp_test_GkhWJfJbqiIQjD', // Enter the Key ID generated from the Dashboard
     amount: newAmount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
-    currency: "INR",
-    name: "Acme Corp", //your business name
-    description: "Test Transaction",
-    image: "https://example.com/your_logo",
+    currency: 'INR',
+    name: 'Acme Corp', //your business name
+    description: 'Test Transaction',
+    image: 'https://example.com/your_logo',
     order_id: order.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
 
     handler: async function (response: any) {
@@ -105,17 +108,17 @@ export const Payment: PaymentHandler = async (
       };
 
       const validateRes = await axios.post(
-        "http://localhost:5500/order/validate",
+        'http://localhost:5500/order/validate',
         body,
         {
           headers: {
-            "Content-Type": "application/json",
+            'Content-Type': 'application/json',
           },
         }
       );
 
       const jsonRes = await validateRes.data;
-      console.log("jsonRes", jsonRes);
+      console.log('jsonRes', jsonRes);
       const orderId = jsonRes.orderId;
       const payment_id = jsonRes.paymentId;
       const msg = jsonRes.msg;
@@ -127,7 +130,8 @@ export const Payment: PaymentHandler = async (
         name,
         email,
         mobileNumber,
-        msg
+        msg,
+        panDetails
       );
 
       generateDonationReceiptPdf({
@@ -147,14 +151,14 @@ export const Payment: PaymentHandler = async (
       contact: mobileNumber, //Provide the customer's phone number for better conversion rates
     },
     notes: {
-      address: "Razorpay Corporate Office",
+      address: 'Razorpay Corporate Office',
     },
     theme: {
-      color: "#3399cc",
+      color: '#3399cc',
     },
   };
   var rzp1 = new window.Razorpay(options);
-  rzp1.on("payment.failed", function (response: any) {
+  rzp1.on('payment.failed', function (response: any) {
     alert(response.error.description);
     alert(response.error.reason);
   });
