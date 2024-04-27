@@ -12,7 +12,7 @@ const AboutUs = forwardRef<HTMLDivElement>((props, ref) => {
         }}
       >
         <div className="p-7">
-          <div className="bg-slate-100 rounded-md shadow-md mx-2 p-4">
+          <div className="bg-slate-100 rounded-md shadow-md mx-2 p-4 mt-10">
             <div className="text-3xl font-bold text-center">
               Jal Samruddha Nashik
             </div>

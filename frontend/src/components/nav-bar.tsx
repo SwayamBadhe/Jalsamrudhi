@@ -6,6 +6,7 @@ import Typography from '@mui/material/Typography';
 import styled from '@emotion/styled';
 import { Link } from 'react-router-dom';
 import { Grid } from '@mui/material';
+import mainIcon from '../Image/mainIcon.jpg';
 
 // Use styled for custom styles
 const StyledAppBar = styled(AppBar)({
@@ -39,6 +40,18 @@ const Navbar = ({
   return (
     <StyledAppBar position="fixed" style={{ background: '#FFF' }}>
       <Toolbar>
+      <img
+            src={mainIcon} // Replace this with your image URL
+            alt="Logo" // Provide an alt text for accessibility
+            style={{
+              width: '50px',
+              height: '50px',
+              borderRadius: '50%',
+              marginRight: '10px',
+              marginBottom: '10px',
+              marginTop: '5px',
+            }}
+          />
         <StyledTitle
           variant="h6"
           sx={{
