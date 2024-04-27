@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, forwardRef } from 'react';
 import { Grid, Typography, Card, CardContent, Box } from '@mui/material';
 import axios from 'axios';
 
@@ -12,7 +12,7 @@ interface Order {
   msg: string;
 }
 
-const Dashboard = () => {
+const Dashboard = forwardRef<HTMLElement>((props, ref) => {
   const [ordersSum, setOrdersSum] = useState(0);
 
   useEffect(() => {
@@ -50,6 +50,7 @@ const Dashboard = () => {
         height: '100vh',
         width: '100vw',
       }}
+      ref={ref}
     >
       <Typography
         variant="h4"
@@ -227,6 +228,6 @@ const Dashboard = () => {
       </Grid>
     </Box>
   );
-};
+});
 
 export default Dashboard;

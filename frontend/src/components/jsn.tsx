@@ -1,13 +1,13 @@
 import { Typography } from '@mui/material';
 import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { forwardRef, useEffect, useState } from 'react';
 
 interface articleItem {
   id: string;
   text: string;
 }
 
-const Jsn = () => {
+const Jsn = forwardRef<HTMLDivElement>((props, ref) => {
   const [articles, setArticles] = useState<articleItem[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -31,7 +31,7 @@ const Jsn = () => {
 
   // Render the Jsn component
   return (
-    <div className="mb-4 h-screen w-screen">
+    <div className="mb-4 h-screen w-screen" ref={ref}>
       <Typography
         variant="h4"
         sx={{
@@ -71,6 +71,6 @@ const Jsn = () => {
       </div>
     </div>
   );
-};
+});
 
 export default Jsn;
