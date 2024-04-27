@@ -18,6 +18,7 @@ const StyledTitle = styled(Typography)({
 });
 
 interface NavbarProps {
+  heroRef: React.RefObject<HTMLDivElement>;
   aboutRef: React.RefObject<HTMLDivElement>;
   dashboardRef: React.RefObject<HTMLDivElement>;
   jsnRef: React.RefObject<HTMLDivElement>;
@@ -26,6 +27,7 @@ interface NavbarProps {
 }
 
 const Navbar = ({
+  heroRef,
   aboutRef,
   dashboardRef,
   jsnRef,
@@ -40,7 +42,8 @@ const Navbar = ({
   return (
     <StyledAppBar position="fixed" style={{ background: '#FFF' }}>
       <Toolbar>
-      <img
+        <Button color="inherit" onClick={() => scrollToSection(heroRef)}>
+          <img
             src={mainIcon} // Replace this with your image URL
             alt="Logo" // Provide an alt text for accessibility
             style={{
@@ -52,6 +55,7 @@ const Navbar = ({
               marginTop: '5px',
             }}
           />
+        </Button>
         <StyledTitle
           variant="h6"
           sx={{

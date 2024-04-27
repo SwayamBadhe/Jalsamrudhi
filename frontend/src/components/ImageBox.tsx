@@ -1,5 +1,5 @@
 import { ArrowBack, ArrowForward } from '@mui/icons-material';
-import { Box,  IconButton, Typography } from '@mui/material';
+import { Box, IconButton, Typography } from '@mui/material';
 import React from 'react';
 // import { Link } from 'react-router-dom';
 
@@ -9,7 +9,6 @@ interface ImageBoxProps {
   description: string;
   handlePreviousSlide: () => void;
   handleNextSlide: () => void;
-  
 }
 
 const ImageBox: React.FC<ImageBoxProps> = ({
@@ -28,95 +27,106 @@ const ImageBox: React.FC<ImageBoxProps> = ({
     //     </div>
     //   </div>
     // </div>
-    <Box
-      sx={{
-        height: '100vh',
-        width: '100vw',
-        backgroundImage: `url(${imageUrl})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        position: 'relative',
-        textAlign: 'center',
-        marginBottom: '5%',
-      }}
-    >
+    <div className="">
       <Box
         sx={{
-          width: '80%',
-          height: '80%',
+          height: '100vh',
+          width: '100vw',
+          backgroundImage: `url(${imageUrl})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
           display: 'flex',
-          flexDirection: 'row',
-          justifyContent: 'space-between',
+          justifyContent: 'center',
           alignItems: 'center',
-          padding: '10px',
+          position: 'relative',
+          textAlign: 'center',
+          marginBottom: '5%',
         }}
       >
-        {/* Left arrow button */}
-        <IconButton
-          onClick={handlePreviousSlide}
+        <Box
           sx={{
-            position: 'absolute',
-            left: '100px',
-            top: '50%',
-            transform: 'translateY(-50%)',
-            background:'#FF5C01',
+            width: '80%',
+            height: '80%',
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            padding: '10px',
           }}
         >
-          <ArrowBack sx={{ color: 'white' }} />
-        </IconButton>
+          {/* Left arrow button */}
+          <IconButton
+            onClick={handlePreviousSlide}
+            sx={{
+              position: 'absolute',
+              left: '100px',
+              top: '50%',
+              transform: 'translateY(-50%)',
+              background: '#FF5C01',
+            }}
+          >
+            <ArrowBack sx={{ color: 'white' }} />
+          </IconButton>
 
-        {/* Slide text */}
-        <Box sx={{ padding: '20px', color: 'white', textAlign: 'center' }}>
-          <Typography variant="h3" sx={{ mb: 2,
-            color: '#FFF',
-            fontFamily: '"DM Serif Display"',
-            fontSize: '65px',
-            fontStyle: 'normal',
-            fontWeight: '400',
-            lineHeight: '125%', 
-            }}>
-            {alt}
-          </Typography>
-          <Typography variant="h6" sx={{ mb: 2 ,
-            color: '#FFF',
-            fontFamily: '"DM Serif Display"',
-            fontSize: '65px',
-            fontStyle: 'normal',
-            fontWeight: '400',
-            lineHeight: '125%', /* 81.25px */
-          }}>
-            {description}
-          </Typography>
-          {/* Add a "Donate" button
-          <Link to="/donate">
-            <Button
-              variant="contained"
-              color="primary"
-              style={{ marginTop: '20px' }}
+          {/* Slide text */}
+          <Box
+            sx={{
+              position: 'absolute',
+              bottom: '5%',
+              right: '5%',
+              padding: '20px',
+              backgroundColor: 'rgba(0, 0, 0, 0.7)', // Semi-transparent background
+              borderRadius: '10px',
+              textAlign: 'right',
+              maxWidth: '40%', // Adjust as needed
+            }}
+          >
+            <Typography
+              variant="h3"
+              sx={{
+                mb: 2,
+                color: '#FFF',
+                fontFamily: '"DM Serif Display"',
+                fontSize: '40px',
+                fontStyle: 'normal',
+                fontWeight: '400',
+                lineHeight: '125%',
+              }}
             >
-              Donate
-            </Button>
-          </Link> */}
-        </Box>
+              {alt}
+            </Typography>
+            <Typography
+              variant="h6"
+              sx={{
+                mb: 2,
+                color: '#FFF',
+                fontFamily: '"DM Serif Display"',
+                fontSize: '24px', // Adjust font size as needed
+                fontStyle: 'normal',
+                fontWeight: '400',
+                lineHeight: '125%',
+              }}
+            >
+              {description}
+            </Typography>
+          </Box>
 
-        {/* Right arrow button */}
-        <IconButton
-          onClick={handleNextSlide}
-          sx={{
-            position: 'absolute',
-            right: '100px',
-            top: '50%',
-            transform: 'translateY(-50%)',
-            background:'#FF5C01',
-          }}
-        >
-          <ArrowForward sx={{ color: 'white' }} />
-        </IconButton>
+          {/* Right arrow button */}
+          <IconButton
+            onClick={handleNextSlide}
+            sx={{
+              position: 'absolute',
+              right: '100px',
+              top: '50%',
+              transform: 'translateY(-50%)',
+              background: '#FF5C01',
+            }}
+          >
+            <ArrowForward sx={{ color: 'white' }} />
+          </IconButton>
+        </Box>
       </Box>
-    </Box>
+    </div>
   );
 };
 

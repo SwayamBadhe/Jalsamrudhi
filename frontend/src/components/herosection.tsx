@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { forwardRef, useEffect, useState } from 'react';
 import ImageBox from './ImageBox';
 import { Grid } from '@mui/material';
 
@@ -12,7 +12,7 @@ interface MediaItem {
   imageUrl: string;
 }
 
-const HeroSection = () => {
+const HeroSection = forwardRef<HTMLDivElement>((props, ref) => {
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
   const [slides, setSlides] = useState<MediaItem[]>([]);
 
@@ -58,28 +58,30 @@ const HeroSection = () => {
   const currentSlide = slides[currentSlideIndex];
 
   return (
-    <Grid
-      sx={{
-        width: '1920px',
-        height: '912px',
-        flexShrink: 0,
-      }}
-    >
-      <>
-        {slides.length > 0 && currentSlide ? (
-          <ImageBox
-            imageUrl={getImageUrl(currentSlide.imageUrl)}
-            alt={currentSlide.alt}
-            description={currentSlide.description}
-            handlePreviousSlide={handlePreviousSlide}
-            handleNextSlide={handleNextSlide}
-          />
-        ) : (
-          <div>Loading...</div>
-        )}
-      </>
-    </Grid>
+    <div ref={ref}>
+      <Grid
+        sx={{
+          width: '1920px',
+          height: '912px',
+          flexShrink: 0,
+        }}
+      >
+        <>
+          {slides.length > 0 && currentSlide ? (
+            <ImageBox
+              imageUrl={getImageUrl(currentSlide.imageUrl)}
+              alt={currentSlide.alt}
+              description={currentSlide.description}
+              handlePreviousSlide={handlePreviousSlide}
+              handleNextSlide={handleNextSlide}
+            />
+          ) : (
+            <div>Loading...</div>
+          )}
+        </>
+      </Grid>
+    </div>
   );
-};
+});
 
 export default HeroSection;

@@ -12,6 +12,7 @@ import { Grid } from '@mui/material';
 import DonationPage from './components/donate';
 
 function App() {
+  const heroRef = useRef<HTMLDivElement>(null);
   const aboutRef = useRef<HTMLDivElement>(null);
   const dashboardRef = useRef<HTMLDivElement>(null);
   const jsnRef = useRef<HTMLDivElement>(null);
@@ -22,6 +23,7 @@ function App() {
     <Grid sx={{ marginLeft: '10px', marginRight: '10px' }}>
       <div className="max-w-screen-2xl mr-5">
         <Navbar
+          heroRef={heroRef}
           aboutRef={aboutRef}
           dashboardRef={dashboardRef}
           jsnRef={jsnRef}
@@ -29,7 +31,7 @@ function App() {
           donationRef={donationRef}
         />
         <div style={{ height: '100vh', overflow: 'hidden' }}>
-          <HeroSection />
+          <HeroSection ref={heroRef} />
         </div>
         <Dashboard ref={dashboardRef} />
         {/* <AppRoutes /> */}
