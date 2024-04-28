@@ -14,7 +14,9 @@ const Jsn = forwardRef<HTMLDivElement>((props, ref) => {
   useEffect(() => {
     const fetchArticles = async () => {
       try {
-        const response = await axios.get('http://localhost:5500/fetch-article');
+        const response = await axios.get(
+          'https://jalsamrudhi-8m6o.vercel.app//fetch-article'
+        );
         setArticles(response.data);
       } catch (error) {
         if (axios.isAxiosError(error)) {

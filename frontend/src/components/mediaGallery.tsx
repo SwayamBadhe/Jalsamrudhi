@@ -15,7 +15,9 @@ const MediaGallery = () => {
   useEffect(() => {
     const fetchMedia = async () => {
       try {
-        const response = await axios.get('http://localhost:5500/fetch-media');
+        const response = await axios.get(
+          'https://jalsamrudhi-8m6o.vercel.app//fetch-media'
+        );
         setMedia(response.data);
         console.log(response.data);
       } catch (error) {
@@ -29,7 +31,7 @@ const MediaGallery = () => {
   }, []);
 
   const getImageUrl = (imageUrl: string) => {
-    return `http://localhost:5500${imageUrl}`;
+    return `https://jalsamrudhi-8m6o.vercel.app/${imageUrl}`;
   };
 
   return (
