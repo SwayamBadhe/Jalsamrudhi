@@ -3,6 +3,7 @@ const cors = require('cors');
 const dotenv = require('dotenv');
 const express = require('express');
 const payload = require('payload');
+const path = require('path');
 
 const mediaRouter = require('./routes/media');
 const donateRouter = require('./routes/payment');
@@ -36,6 +37,7 @@ const start = async () => {
   await payload.init({
     secret: process.env.PAYLOAD_SECRET,
     express: app,
+    config: path.resolve(__dirname, 'src', 'payload.config.ts'),
     onInit: async () => {
       payload.logger.info(`Payload Admin URL: ${payload.getAdminURL()}`);
     },
