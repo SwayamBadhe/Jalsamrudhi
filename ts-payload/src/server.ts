@@ -47,3 +47,5 @@ const start = async () => {
 app.listen(5500);
 
 start();
+
+export default app;
