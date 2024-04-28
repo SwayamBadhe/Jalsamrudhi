@@ -18,7 +18,7 @@ const DonationPage = forwardRef<HTMLDivElement>((props, ref) => {
   const [email, setEmail] = useState('');
   const [mobileNo, setMobileNo] = useState('');
   const [requireTaxExemption, setRequireTaxExemption] = useState(false);
-  const [panDetails, setPanDetails] = useState('');
+  const [panDetails, setPanDetails] = useState('NAN');
 
   const handleSubmit = () => {
     const priceNumber: number = parseFloat(price);
