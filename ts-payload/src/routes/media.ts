@@ -1,4 +1,4 @@
-const express = require('express');
+import express from 'express';
 const mediaRouter = express.Router();
 
 const { getAllMedia, getMediaById } = require('../controllers/media');
