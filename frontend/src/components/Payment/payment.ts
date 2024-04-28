@@ -59,7 +59,7 @@ const postRaymentInfo = async (
 ) => {
   try {
     const response = await axios.post(
-      'https://jalsamrudhi-8m6o.vercel.app//order/orderInfo',
+      'https://jalsamrudhi-8m6o.vercel.app/order/orderInfo',
       {
         orderId,
         orderAmount,
@@ -88,7 +88,7 @@ export const Payment: PaymentHandler = async (
   const mobileNumber = String(mobileNo);
   const newAmount = amount * 100;
   const response = await axios.post(
-    'https://jalsamrudhi-8m6o.vercel.app//order',
+    'https://jalsamrudhi-8m6o.vercel.app/order',
     {
       amount: newAmount,
       currency: 'INR',
@@ -113,7 +113,7 @@ export const Payment: PaymentHandler = async (
       };
 
       const validateRes = await axios.post(
-        'https://jalsamrudhi-8m6o.vercel.app//order/validate',
+        'https://jalsamrudhi-8m6o.vercel.app/order/validate',
         body,
         {
           headers: {

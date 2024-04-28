@@ -30,7 +30,7 @@ const HeroSection = forwardRef<HTMLDivElement>((props, ref) => {
     const fetchMedia = async () => {
       try {
         const response = await axios.get(
-          'https://jalsamrudhi-8m6o.vercel.app//fetch-media'
+          'https://jalsamrudhi-8m6o.vercel.app/fetch-media'
         );
         setSlides(response.data);
       } catch (error) {
@@ -44,7 +44,7 @@ const HeroSection = forwardRef<HTMLDivElement>((props, ref) => {
   }, []);
 
   const getImageUrl = (imageUrl: string) => {
-    return `https://jalsamrudhi-8m6o.vercel.app/${imageUrl}`;
+    return `https://jalsamrudhi-8m6o.vercel.app${imageUrl}`;
   };
   const handlePreviousSlide = () => {
     setCurrentSlideIndex(
