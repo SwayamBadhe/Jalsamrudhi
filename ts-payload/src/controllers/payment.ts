@@ -49,8 +49,16 @@ const validateOrder = async (req: Request, res: Response) => {
 
 const postOrderInfo = async (req, res) => {
   try {
-    const { orderId, orderAmount, paymentId, name, email, mobileNo, msg } =
-      req.body;
+    const {
+      orderId,
+      orderAmount,
+      paymentId,
+      name,
+      email,
+      mobileNo,
+      msg,
+      panDetails,
+    } = req.body;
 
     const order = new Order({
       orderId,
@@ -60,6 +68,7 @@ const postOrderInfo = async (req, res) => {
       email,
       mobileNo,
       msg,
+      panDetails,
     });
 
     await order.save();

@@ -1,63 +1,90 @@
-import jsPDF from 'jspdf';
+import jsPDF from "jspdf";
+import img1 from "./1-removebg-preview.png";
+import img2 from "./2-removebg-preview.png";
 
 interface DonationReceiptData {
+  panDetails: string;
+  // date: string;
+  // receiptno: string;
   name: string;
   amount: number;
-  email: string;
-  orderId: string;
   payment_id: string;
-  panDetails: string;
+  // payment_method: string;
+  mobileNumber: string;
+  email: string;
+  // org_add: string;
+  // reg_no: string;
 }
 
-export const generateDonationReceiptPdf = ({
+const currentDate = new Date();
+const formattedDate = currentDate.toLocaleDateString("en-IN", {
+  year: "numeric",
+  month: "2-digit",
+  day: "2-digit",
+});
+
+export const generateDonationReceiptPDF = ({
+  panDetails,
   name,
   amount,
-  email,
-  orderId,
   payment_id,
-  panDetails,
-}: DonationReceiptData) => {
-  const doc = new jsPDF();
+  mobileNumber,
+  email,
+}: DonationReceiptData): void => {
+  const pdf = new jsPDF("p", "mm", "a4");
 
-  // Organization Information
-  doc.setFontSize(14);
-  doc.text('JALSAMRUDDHA NASHIK ABHIYAN', 105, 10, { align: 'center' });
-  doc.setFontSize(10);
-  doc.text('NASHIK', 105, 20, { align: 'center' });
-  doc.text('MAHARASHTRA | 0000000000', 105, 25, { align: 'center' });
+  pdf.addImage(img1, "PNG", 15, 15, 20 * 2.41, 20);
+  pdf.addImage(img2, "PNG", 160, 7, 25, 25);
 
-  // Empty Line
-  doc.text('', 105, 30);
+  pdf.setFontSize(16);
+  pdf.text("DONATION RECEIPT", 105, 20, { align: "center" });
 
-  // Receipt Information
-  doc.setFontSize(12);
-  doc.text('Receipt #', 20, 40);
-  doc.text(orderId, 40, 40);
-  doc.text('Payment ID:', 20, 50);
-  doc.text(payment_id, 60, 50);
+  // Location and Reg. No
+  pdf.setFontSize(10);
+  pdf.text("NASHIK, MAHARASHTRA", 105, 30, { align: "center" });
+  pdf.text(`Reg. no - '0000000000'`, 105, 35, { align: "center" });
 
-  // Donor Information
-  doc.text('Donor Name:', 20, 60);
-  doc.text(name, 80, 60);
-  doc.text('Contact:', 20, 70);
-  doc.text(email, 80, 70);
+  // Main content box
+  pdf.rect(10, 40, 190, 170);
 
-  // Donation Details
-  doc.text('Amount:', 20, 80);
-  doc.text(`Rs.${amount.toFixed(2)}`, 80, 80); // Use the provided amount
-  doc.text('Donation Type:', 20, 90);
-  doc.text('One-time', 80, 90);
-  doc.text('Payment Method:', 20, 100);
-  doc.text('Cash', 80, 100);
+  // Date
+  pdf.text("Date:", 20, 50);
+  pdf.text(formattedDate, 70, 50);
 
-  // Empty Line
-  doc.text('', 105, 110);
+  // Donor Name
+  pdf.text("Donor Name:", 20, 60);
+  pdf.text(name, 70, 60);
+
+  // Mobile
+  pdf.text("Mobile:", 20, 70);
+  pdf.text(`+${mobileNumber}`, 70, 70);
+
+  // Email
+  pdf.text("Email ID:", 20, 80);
+  pdf.text(email, 70, 80);
+
+  // PAN
+  pdf.text("PAN:", 20, 90);
+  pdf.text(panDetails, 70, 90);
+
+  // Amount
+  pdf.text("Amount:", 20, 100);
+  pdf.text(`Rs.${amount}`, 70, 100);
+
+  // Transaction ID
+  pdf.text("Transaction ID:", 20, 110);
+  pdf.text(payment_id, 70, 110);
+
+  // Payment Method
+  pdf.text("Payment Method:", 20, 120);
+  pdf.text("Online", 70, 120);
 
   // Thank you message
-  doc.setFontSize(14);
-  doc.text('Thank you for your generous support', 105, 120, {
-    align: 'center',
+  pdf.setFontSize(12);
+  pdf.text("[ ^_^ Thank you for your generous support ]", 105, 200, {
+    align: "center",
   });
 
-  doc.save('donation_receipt.pdf');
+  const fileName = `donation_receipt.pdf`;
+  pdf.save(fileName);
 };
