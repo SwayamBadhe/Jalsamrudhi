@@ -37,7 +37,7 @@ const start = async () => {
   await payload.init({
     secret: process.env.PAYLOAD_SECRET,
     express: app,
-    config: path.resolve(__dirname, 'src', 'payload.config.ts'),
+    config: path.resolve(__dirname, '..', 'payload.config.ts'),
     onInit: async () => {
       payload.logger.info(`Payload Admin URL: ${payload.getAdminURL()}`);
     },
