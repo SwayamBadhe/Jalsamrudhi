@@ -16,7 +16,7 @@ const MediaGallery = () => {
     const fetchMedia = async () => {
       try {
         const response = await axios.get(
-          'https://jalsamrudhi-8m6o.vercel.app/fetch-media'
+          'https://winjit-proj.vercel.app/fetch-media'
         );
         setMedia(response.data);
         console.log(response.data);
@@ -31,7 +31,7 @@ const MediaGallery = () => {
   }, []);
 
   const getImageUrl = (imageUrl: string) => {
-    return `https://jalsamrudhi-8m6o.vercel.app${imageUrl}`;
+    return `https://winjit-proj.vercel.app${imageUrl}`;
   };
 
   return (
