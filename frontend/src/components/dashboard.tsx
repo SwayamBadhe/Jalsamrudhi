@@ -21,7 +21,7 @@ const Dashboard = forwardRef<HTMLElement>((props, ref) => {
       try {
         // Fetch orders and calculate the sum
         const sumResponse = await axios.get<Order[]>(
-          'https://backendjalsamruddhi.engeniuspark.in/order'
+          'https://jalsamruddhibackend.staggingservers.in/order'
         );
         const ordersSum = sumResponse.data.reduce(
           (total: number, order: Order) => total + order.orderAmount,

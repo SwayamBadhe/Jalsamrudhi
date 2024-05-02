@@ -30,7 +30,7 @@ const HeroSection = forwardRef<HTMLDivElement>((props, ref) => {
     const fetchMedia = async () => {
       try {
         const response = await axios.get(
-          'https://backendjalsamruddhi.engeniuspark.in/fetch-media'
+          'https://jalsamruddhibackend.staggingservers.in/fetch-media'
         );
         setSlides(response.data);
       } catch (error) {
@@ -44,7 +44,7 @@ const HeroSection = forwardRef<HTMLDivElement>((props, ref) => {
   }, []);
 
   const getImageUrl = (imageUrl: string) => {
-    return `https://backendjalsamruddhi.engeniuspark.in${imageUrl}`;
+    return `https://jalsamruddhibackend.staggingservers.in${imageUrl}`;
   };
   const handlePreviousSlide = () => {
     setCurrentSlideIndex(

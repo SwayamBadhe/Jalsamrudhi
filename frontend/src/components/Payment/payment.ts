@@ -59,7 +59,7 @@ const postRaymentInfo = async (
 ) => {
   try {
     const response = await axios.post(
-      'https://backendjalsamruddhi.engeniuspark.in/order/orderInfo',
+      'https://jalsamruddhibackend.staggingservers.in/order/orderInfo',
       {
         orderId,
         orderAmount,
@@ -88,7 +88,7 @@ export const Payment: PaymentHandler = async (
   const mobileNumber = String(mobileNo);
   const newAmount = amount * 100;
   const response = await axios.post(
-    'https://backendjalsamruddhi.engeniuspark.in/order',
+    'https://jalsamruddhibackend.staggingservers.in/order',
     {
       amount: newAmount,
       currency: 'INR',
@@ -113,7 +113,7 @@ export const Payment: PaymentHandler = async (
       };
 
       const validateRes = await axios.post(
-        'https://backendjalsamruddhi.engeniuspark.in/order/validate',
+        'https://jalsamruddhibackend.staggingservers.in/order/validate',
         body,
         {
           headers: {

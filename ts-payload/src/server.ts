@@ -46,8 +46,6 @@ const start = async () => {
   // Add your own express routes here
 };
 
-app.listen(5500);
+app.listen(6000);
 
 start();
-
-export default app;
