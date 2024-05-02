@@ -30,7 +30,7 @@ const HeroSection = forwardRef<HTMLDivElement>((props, ref) => {
     const fetchMedia = async () => {
       try {
         const response = await axios.get(
-          'https://winjit-proj.vercel.app/fetch-media'
+          'https://backendjalsamruddhi.engeniuspark.in/fetch-media'
         );
         setSlides(response.data);
       } catch (error) {
@@ -44,7 +44,7 @@ const HeroSection = forwardRef<HTMLDivElement>((props, ref) => {
   }, []);
 
   const getImageUrl = (imageUrl: string) => {
-    return `https://winjit-proj.vercel.app${imageUrl}`;
+    return `https://backendjalsamruddhi.engeniuspark.in${imageUrl}`;
   };
   const handlePreviousSlide = () => {
     setCurrentSlideIndex(

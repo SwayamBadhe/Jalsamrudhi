@@ -18,14 +18,14 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cors());
 
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(express.static('public'));
+
 // Routes
 app.use('/fetch-media', mediaRouter);
 app.use('/order', donateRouter);
 app.use('/fetch-article', articleRouter);
-
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
-app.use(express.static('public'));
 
 // Redirect root to Admin panel
 app.get('/', (_, res) => {
@@ -37,7 +37,7 @@ const start = async () => {
   await payload.init({
     secret: process.env.PAYLOAD_SECRET,
     express: app,
-    config: path.resolve(__dirname, '..', 'payload.config.ts'),
+    config: path.resolve(__dirname, 'payload.config.ts'),
     onInit: async () => {
       payload.logger.info(`Payload Admin URL: ${payload.getAdminURL()}`);
     },

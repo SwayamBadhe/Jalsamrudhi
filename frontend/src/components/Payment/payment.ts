@@ -59,7 +59,7 @@ const postRaymentInfo = async (
 ) => {
   try {
     const response = await axios.post(
-      'https://winjit-proj.vercel.app/order/orderInfo',
+      'https://backendjalsamruddhi.engeniuspark.in/order/orderInfo',
       {
         orderId,
         orderAmount,
@@ -87,11 +87,14 @@ export const Payment: PaymentHandler = async (
 ) => {
   const mobileNumber = String(mobileNo);
   const newAmount = amount * 100;
-  const response = await axios.post('https://winjit-proj.vercel.app/order', {
-    amount: newAmount,
-    currency: 'INR',
-    // receipt: receiptId,
-  });
+  const response = await axios.post(
+    'https://backendjalsamruddhi.engeniuspark.in/order',
+    {
+      amount: newAmount,
+      currency: 'INR',
+      // receipt: receiptId,
+    }
+  );
   const order = await response.data;
   console.log('order', order);
 
@@ -110,7 +113,7 @@ export const Payment: PaymentHandler = async (
       };
 
       const validateRes = await axios.post(
-        'https://winjit-proj.vercel.app/order/validate',
+        'https://backendjalsamruddhi.engeniuspark.in/order/validate',
         body,
         {
           headers: {

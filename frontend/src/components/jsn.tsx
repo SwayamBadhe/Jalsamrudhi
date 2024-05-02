@@ -15,7 +15,7 @@ const Jsn = forwardRef<HTMLDivElement>((props, ref) => {
     const fetchArticles = async () => {
       try {
         const response = await axios.get(
-          'https://winjit-proj.vercel.app/fetch-article'
+          'https://backendjalsamruddhi.engeniuspark.in/fetch-article'
         );
         setArticles(response.data);
       } catch (error) {
