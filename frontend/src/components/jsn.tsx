@@ -14,9 +14,7 @@ const Jsn = forwardRef<HTMLDivElement>((props, ref) => {
   useEffect(() => {
     const fetchArticles = async () => {
       try {
-        const response = await axios.get(
-          'https://jalsamruddhibackend.staggingservers.in/fetch-article'
-        );
+        const response = await axios.get('http://localhost:5500/fetch-article');
         setArticles(response.data);
       } catch (error) {
         if (axios.isAxiosError(error)) {

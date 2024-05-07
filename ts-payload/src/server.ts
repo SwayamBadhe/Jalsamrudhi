@@ -37,7 +37,6 @@ const start = async () => {
   await payload.init({
     secret: process.env.PAYLOAD_SECRET,
     express: app,
-    config: path.resolve(__dirname, 'payload.config.ts'),
     onInit: async () => {
       payload.logger.info(`Payload Admin URL: ${payload.getAdminURL()}`);
     },
@@ -46,6 +45,6 @@ const start = async () => {
   // Add your own express routes here
 };
 
-app.listen(6000);
+app.listen(5500);
 
 start();

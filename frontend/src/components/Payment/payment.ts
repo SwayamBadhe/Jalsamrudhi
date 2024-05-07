@@ -58,19 +58,16 @@ const postRaymentInfo = async (
   panDetails: string
 ) => {
   try {
-    const response = await axios.post(
-      'https://jalsamruddhibackend.staggingservers.in/order/orderInfo',
-      {
-        orderId,
-        orderAmount,
-        paymentId,
-        name,
-        email,
-        mobileNo,
-        msg,
-        panDetails,
-      }
-    );
+    const response = await axios.post('http://localhost:5500/order/orderInfo', {
+      orderId,
+      orderAmount,
+      paymentId,
+      name,
+      email,
+      mobileNo,
+      msg,
+      panDetails,
+    });
 
     console.log('Receipt generated:', response.data);
   } catch (error) {
@@ -87,14 +84,11 @@ export const Payment: PaymentHandler = async (
 ) => {
   const mobileNumber = String(mobileNo);
   const newAmount = amount * 100;
-  const response = await axios.post(
-    'https://jalsamruddhibackend.staggingservers.in/order',
-    {
-      amount: newAmount,
-      currency: 'INR',
-      // receipt: receiptId,
-    }
-  );
+  const response = await axios.post('http://localhost:5500/order', {
+    amount: newAmount,
+    currency: 'INR',
+    // receipt: receiptId,
+  });
   const order = await response.data;
   console.log('order', order);
 
@@ -113,7 +107,7 @@ export const Payment: PaymentHandler = async (
       };
 
       const validateRes = await axios.post(
-        'https://jalsamruddhibackend.staggingservers.in/order/validate',
+        'http://localhost:5500/order/validate',
         body,
         {
           headers: {

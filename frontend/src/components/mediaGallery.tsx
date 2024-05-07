@@ -16,7 +16,7 @@ const MediaGallery = () => {
     const fetchMedia = async () => {
       try {
         const response = await axios.get(
-          'https://jalsamruddhibackend.staggingservers.in/fetch-media'
+          'http://localhost:5500/fetch-media'
         );
         setMedia(response.data);
         console.log(response.data);
@@ -31,7 +31,7 @@ const MediaGallery = () => {
   }, []);
 
   const getImageUrl = (imageUrl: string) => {
-    return `https://jalsamruddhibackend.staggingservers.in${imageUrl}`;
+    return `http://localhost:5500${imageUrl}`;
   };
 
   return (
