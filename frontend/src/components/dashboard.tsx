@@ -21,7 +21,7 @@ const Dashboard = forwardRef<HTMLElement>((props, ref) => {
       try {
         // Fetch orders and calculate the sum
         const sumResponse = await axios.get<Order[]>(
-          'https://winjit-proj-8h3uzjfyw-swayam-badhes-projects.vercel.app/order'
+          'https://winjit-proj.vercel.app/order'
         );
         const ordersSum = sumResponse.data.reduce(
           (total: number, order: Order) => total + order.orderAmount,
