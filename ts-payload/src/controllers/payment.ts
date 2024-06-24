@@ -71,6 +71,9 @@ const postOrderInfo = async (req, res) => {
       panDetails,
     });
 
+    console.log(order);
+    
+
     await order.save();
 
     res.status(201).json({ message: 'Order info saved successfully' });

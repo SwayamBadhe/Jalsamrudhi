@@ -18,6 +18,7 @@ export default buildConfig({
     bundler: webpackBundler(),
   },
   editor: slateEditor({}),
+  serverURL: 'https://winjit-proj-8h3uzjfyw-swayam-badhes-projects.vercel.app',
   collections: [Users, Media, Media_Gallery, AboutUs, JSN],
   typescript: {
     outputFile: path.resolve(__dirname, 'payload-types.ts'),

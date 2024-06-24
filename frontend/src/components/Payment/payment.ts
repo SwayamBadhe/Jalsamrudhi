@@ -58,16 +58,19 @@ const postRaymentInfo = async (
   panDetails: string
 ) => {
   try {
-    const response = await axios.post('http://localhost:5500/order/orderInfo', {
-      orderId,
-      orderAmount,
-      paymentId,
-      name,
-      email,
-      mobileNo,
-      msg,
-      panDetails,
-    });
+    const response = await axios.post(
+      'https://winjit-proj-8h3uzjfyw-swayam-badhes-projects.vercel.app/order/orderInfo',
+      {
+        orderId,
+        orderAmount,
+        paymentId,
+        name,
+        email,
+        mobileNo,
+        msg,
+        panDetails,
+      }
+    );
 
     console.log('Receipt generated:', response.data);
   } catch (error) {
@@ -84,11 +87,14 @@ export const Payment: PaymentHandler = async (
 ) => {
   const mobileNumber = String(mobileNo);
   const newAmount = amount * 100;
-  const response = await axios.post('http://localhost:5500/order', {
-    amount: newAmount,
-    currency: 'INR',
-    // receipt: receiptId,
-  });
+  const response = await axios.post(
+    'https://winjit-proj-8h3uzjfyw-swayam-badhes-projects.vercel.app/order',
+    {
+      amount: newAmount,
+      currency: 'INR',
+      // receipt: receiptId,
+    }
+  );
   const order = await response.data;
   console.log('order', order);
 
@@ -107,7 +113,7 @@ export const Payment: PaymentHandler = async (
       };
 
       const validateRes = await axios.post(
-        'http://localhost:5500/order/validate',
+        'https://winjit-proj-8h3uzjfyw-swayam-badhes-projects.vercel.app/order/validate',
         body,
         {
           headers: {

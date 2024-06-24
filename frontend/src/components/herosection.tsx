@@ -29,7 +29,9 @@ const HeroSection = forwardRef<HTMLDivElement>((props, ref) => {
   useEffect(() => {
     const fetchMedia = async () => {
       try {
-        const response = await axios.get('http://localhost:5500/fetch-media');
+        const response = await axios.get(
+          'https://winjit-proj-8h3uzjfyw-swayam-badhes-projects.vercel.app/fetch-media'
+        );
         setSlides(response.data);
       } catch (error) {
         if (axios.isAxiosError(error)) {
@@ -42,7 +44,7 @@ const HeroSection = forwardRef<HTMLDivElement>((props, ref) => {
   }, []);
 
   const getImageUrl = (imageUrl: string) => {
-    return `http://localhost:5500${imageUrl}`;
+    return `https://winjit-proj-8h3uzjfyw-swayam-badhes-projects.vercel.app${imageUrl}`;
   };
   const handlePreviousSlide = () => {
     setCurrentSlideIndex(
