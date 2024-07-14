@@ -45,6 +45,6 @@ const start = async () => {
   // Add your own express routes here
 };
 
-app.listen(5500);
+app.listen(process.env.PORT || 5500);
 
 start();
